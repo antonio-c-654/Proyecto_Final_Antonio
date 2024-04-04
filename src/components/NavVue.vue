@@ -34,7 +34,7 @@
                     
                     <div class="w-[25%]">
                         <select class="bg-transparent text-white text-sm">
-                            <option value="" class="bg-[#22222a]" disabled selected>Cocción</option>
+                            <option value=null class="bg-[#22222a]" disabled selected>Cocción</option>
                             <option value="poco-h" class="bg-[#22222a]">Poco hecha</option>
                             <option value="punto-h" class="bg-[#22222a]">Al punto</option>
                             <option value="muy-h" class="bg-[#22222a]">Muy hecha</option>
@@ -47,7 +47,7 @@
                 </div>
             </div>
 
-            <div id="idiomas" class="h-full flex items-center">
+            <div id="idiomas" class="h-full flex items-center text-sm">
                 <div class="flex justify-evenly items-center hover:bg-green-400 p-2 rounded-md cursor-pointer">
                     <img src="../assets/spain.png" class="w-[30px] mr-3">
                     <span>Español</span>
@@ -58,11 +58,11 @@
                 </div>                
             </div>
             
-            <div id="login_sesion" class="flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer">
+            <div id="login_sesion" class="flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <router-link to="/login" class="">Iniciar sesión</router-link>
                 <i class="fa-solid fa-user ml-3"></i>
             </div>
-            <div id="login_sesion" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer">
+            <div id="login_sesion" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <span>Cerrar sesión</span>
                 <i class="fa-solid fa-right-to-bracket ml-3"></i>
             </div>

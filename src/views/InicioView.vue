@@ -7,11 +7,11 @@
 
       <div id="menu_lateral" class="w-[12vw] h-[70vh] flex flex-col pl-4 text-white">
 
-        <h1 class="text-2xl underline mt-8 mb-8 ml-2">Productos</h1>
+        <h1 class="text-xl font-bold underline underline-offset-4 mt-8 mb-8 ml-2">Productos</h1>
 
-        <div v-for="cat in categorias" :key="cat.id_cat" class="hover:bg-white hover:text-black rounded-md h-[40px] w-[80%] pl-2 flex items-center mb-4 cursor-pointer">
+        <div v-for="cat in categorias" :key="cat.id_cat" class="hover:bg-white hover:bg-opacity-90 hover:text-black rounded-md h-[40px] w-[95%] pl-2 flex items-center mb-4 cursor-pointer">
             <span v-html="cat.icono" class="mr-2"></span>
-            <span>{{ cat.nombre }}</span>
+            <span class="text-sm">{{ cat.nombre }}</span>
         </div>
           
       </div>
