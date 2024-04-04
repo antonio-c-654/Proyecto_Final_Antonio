@@ -5,7 +5,7 @@
 
     <div class="bg-[#111015] flex h-[90vh]">
 
-      <div id="menu_lateral" class="w-[15vw] h-[70vh] flex flex-col pl-4 text-white">
+      <div id="menu_lateral" class="w-[12vw] h-[70vh] flex flex-col pl-4 text-white">
 
         <h1 class="text-2xl underline mt-8 mb-8 ml-2">Productos</h1>
 
@@ -16,9 +16,9 @@
           
       </div>
 
-      <div id="productos" class="h-[90vh] w-[85vw] grid grid-cols-4 gap-6 justify-evenly overflow-auto no-scrollbar p-8">
+      <div id="productos" class="h-auto w-[88vw] grid grid-cols-4 gap-6 justify-evenly overflow-scroll no-scrollbar p-8">
 
-        <div v-for="producto in productos" :key="producto.id" class="producto bg-[#22222a] w-[350px] h-[350px] rounded-md flex flex-col items-center justify-around p-4">
+        <div v-for="producto in productos" :key="producto.id" class="producto bg-[#22222a] w-[20vw] h-[25vw] rounded-md flex flex-col items-center justify-around p-4">
             <div class="w-full flex justify-between">
                 <i class="fa-solid fa-circle-info text-white"></i>
                 <!-- <i class="fa-solid fa-fire text-red-500"></i> -->

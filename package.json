@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "watch-tailw": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
+    "w-tailw": "npx tailwindcss -i ./public/input.css -o ./public/output.css --watch"
   },
   "dependencies": {
     "core-js": "^3.8.3",
