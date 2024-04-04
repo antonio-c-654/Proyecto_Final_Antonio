@@ -11,12 +11,12 @@
             <router-link to="/contacto" class="hover:text-black hover:underline hover:underline-offset-4">Contacto</router-link>
         </div>
         <div class="w-[30vw] border-l-black h-full flex items-center justify-evenly">
-            <div id="carrito" class="relative p-3 cursor-pointer">
+            <div @click="mostrarCart()" id="carrito" class="relative p-3 cursor-pointer">
                 <i class="fa-solid fa-cart-shopping text-xl"></i>
                 <span class="absolute top-0 r-0 text-sm bg-teal-700 rounded-full px-1">0</span>
             </div>
 
-            <div id="cart_contenido" class="absolute top-[11vh] right-[20vw] w-[400px] h-[400px] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-black rounded-md p-4">
+            <div id="cart_contenido" v-if="cartVisible" class="absolute top-[11vh] right-[20vw] w-[400px] h-[400px] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-black rounded-md p-4">
 
                 <button @click="pagar" class="w-[120px] h-[35px] my-2 rounded-md cursor-pointer border hover:bg-white hover:text-black">Pagar  <i class="fa-regular fa-circle-check"></i></button>
                 <div v-for="i in 4" :key="i" class="w-full h-auto flex items-center bg-[#22222a] rounded-md">
@@ -57,9 +57,17 @@
 <script>
 export default {
     name: 'NavVue',
+    data(){
+        return{
+            cartVisible: false
+        }
+    },
     methods:{
         pagar(){
             this.$router.push( {name: 'pago', params:{id: 1}} )
+        },
+        mostrarCart(){
+            this.cartVisible = !this.cartVisible
         }
     }
 }
