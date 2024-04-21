@@ -7,10 +7,15 @@
     <div class="flex flex-col gap-4">
       <p class="">Seleccione metodo de pago</p>
       <h1 class="text-[#14c458]">Tarjeta</h1>
+
       <div class="md:w-[50vw] border border-red-600 md:flex">
-        <div>
+
+        <!-- <div class="card_atropos">
           <img src="https://static.vecteezy.com/system/resources/thumbnails/009/384/393/small_2x/credit-card-clipart-design-illustration-free-png.png" class="w-[70vw] md:w-[20vw] mb-2">
-        </div>
+        </div> -->
+
+        <CardAtroposVue></CardAtroposVue>
+
         <div class="md:flex md:flex-col md:justify-center md:w-[50%] md:pl-8">
           <p>Numero de tarjeta</p>
           <input type="text" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
@@ -20,6 +25,7 @@
           <input type="text" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
         </div>
       </div>
+
       <h1 class="text-[#14c458]">Otros metodos de pago online</h1>
       <div v-for="met in metodos_pago" :key="met.id" class="border flex items-center justify-between h-[10vh] md:w-[50vw] py-2 px-2 bg-[#22222a]">
         <p class="w-[30%]">{{ met.nombre }}</p>
@@ -38,22 +44,26 @@
 import { mapState } from 'vuex';
 import { useToast } from "vue-toastification";
 
+// atropos
+import CardAtroposVue from '@/components/CardAtroposVue.vue';
+
 export default {
+  components: { CardAtroposVue },
   computed:{
     ...mapState(['metodos_pago'])
   },
   setup() {
       const toast = useToast();      
       return { toast }
-    },
-    methods: {
-      alertaToast() {
-        // this.toast.success("Correcto");
-        this.toast.success("Correcto", {
+  },
+  methods: {
+    alertaToast() {
+      // this.toast.success("Correcto");
+      this.toast.success("Correcto", {
         timeout: 2000
       });
-      }
     }
+  }    
 
 }
 </script>
