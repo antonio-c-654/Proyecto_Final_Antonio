@@ -10,7 +10,7 @@ export const metodos_pago = [
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/2560px-Google_Pay_Logo.svg.png'
     },
     {
-        id: 1,
+        id: 2,
         nombre: 'Amazon Pay',
         logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Amazon_Pay_logo.svg/2560px-Amazon_Pay_logo.svg.png'
     },

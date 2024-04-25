@@ -20,5 +20,15 @@ npm run build
 npm run lint
 ```
 
+### Tailwind
+```
+npm run w-tailw
+```
+
+### Node Version: 20.10.0
+```
+nvm use 20
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
