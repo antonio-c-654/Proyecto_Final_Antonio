@@ -9,6 +9,8 @@
         <input type="text" placeholder="Nombre" v-model="nombre" class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <input type="email" placeholder="Email" v-model="email" class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
+        <p class="w-full text-sm italic"><i class="fa-solid fa-circle-info"></i> La contraseña que elijas debe tener al menos 8 caracteres</p>
+        <router-link to="/login" class="text-blue-500 underline w-full">¿Ya tienes cuenta? Inicia sesión</router-link>
         <button class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400">Enviar</button>
       </div>
     </div>

@@ -6,9 +6,9 @@
                 <img src="../assets/logo_v_3.png" class="h-[80%]">
             </div>
             <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Inicio</router-link>
-            <router-link to="/login" class="hover:text-black hover:underline hover:underline-offset-4">Login</router-link>
-            <router-link to="/register" class="hover:text-black hover:underline hover:underline-offset-4">Register</router-link>
+            <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Hamburguesa del mes</router-link>
             <router-link to="/contacto" class="hover:text-black hover:underline hover:underline-offset-4">Contacto</router-link>
+            <router-link to="/perfil/1" class="hover:text-black hover:underline hover:underline-offset-4">Perfil</router-link>
         </div>
         <div class="w-[30vw] border-l-black h-full flex items-center justify-evenly">
             <div @click="mostrarCart()" id="carrito" class="relative p-3 cursor-pointer">
@@ -18,9 +18,12 @@
 
             <div id="cart_contenido" v-if="cartVisible" class="absolute top-[11vh] right-[12vw] w-[40vw] h-[60vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md p-4">
 
-                <div class="w-full flex items-center justify-around">
-                    <p class="text-lg font-bold">Total: <span class="text-[#14c458]">113,55 €</span></p>
-                    <button @click="pagar" class="w-[50%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:bg-gradient-to-br from-blue-500 to-teal-400">
+                <div id="botones_cart" class="w-full flex items-center justify-between">
+                    <p class="text-lg font-bold w-[45%] pl-4">Total: <span class="text-[#14c458]">113,55 €</span></p>
+                    <button @click="pagar" class="w-[20%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:bg-white hover:text-black hover:border-teal-400">
+                        Vaciar  <i class="fa-regular fa-circle-xmark"></i>
+                    </button>
+                    <button @click="pagar" class="w-[30%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:bg-gradient-to-br from-blue-500 to-teal-400">
                         Confirmar  <i class="fa-regular fa-circle-check"></i>
                     </button>
                 </div>
@@ -42,22 +45,15 @@
                     </div>
                     
                     <div class="w-[20%] h-full flex items-center justify-center">
-                        <button class="w-[70%] h-[45%] hover:border rounded-md cursor-pointer bg-gradient-to-br from-red-700 to-red-500"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="text-red-500 border border-red-500 rounded-lg py-4 px-6"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
             </div>
 
-            <div id="idiomas" class="h-full flex items-center text-sm">
-                <div class="flex justify-evenly items-center hover:bg-green-400 p-2 rounded-md cursor-pointer">
-                    <img src="../assets/spain.png" class="w-[30px] mr-3">
-                    <span>Español</span>
-                </div>
-                <div class="hidden justify-evenly items-center hover:bg-green-400 p-2 rounded-md cursor-pointer">
-                    <img src="../assets/united-kingdom.png" class="w-[30px] mr-3 cursor-pointer">
-                    <span>Ingles</span>
-                </div>                
+            <div id="register_sesion" class="flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+                <router-link to="/register" class="">Registrarse</router-link>
+                <i class="fa-solid fa-user-plus ml-3"></i>
             </div>
-            
             <div id="login_sesion" class="flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <router-link to="/login" class="">Iniciar sesión</router-link>
                 <i class="fa-solid fa-user ml-3"></i>
