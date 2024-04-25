@@ -16,16 +16,10 @@
                 <span class="absolute top-0 r-0 text-sm bg-teal-700 rounded-full px-1">0</span>
             </div>
 
-            <div id="cart_contenido" v-if="cartVisible" class="absolute top-[11vh] right-[12vw] w-[40vw] h-[60vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md p-4">
+            <div id="cart_contenido" v-if="cartVisible" class="absolute top-[11vh] right-[12vw] w-[40vw] h-[60vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md px-4 pt-4">
 
-                <div id="botones_cart" class="w-full flex items-center justify-between">
-                    <p class="text-lg font-bold w-[45%] pl-4">Total: <span class="text-[#14c458]">113,55 €</span></p>
-                    <button @click="pagar" class="w-[20%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:bg-white hover:text-black hover:border-teal-400">
-                        Vaciar  <i class="fa-regular fa-circle-xmark"></i>
-                    </button>
-                    <button @click="pagar" class="w-[30%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:bg-gradient-to-br from-blue-500 to-teal-400">
-                        Confirmar  <i class="fa-regular fa-circle-check"></i>
-                    </button>
+                <div class="w-full flex justify-end text-red-500">
+                    <p @click="mostrarCart()" class="hover:underline hover:underline-offset-4 cursor-pointer">Cerrar <i class="fa-regular fa-circle-xmark"></i></p>
                 </div>
                 
                 <div v-for="i in 4" :key="i" class="w-full h-auto flex items-center bg-[#22222a] rounded-md">
@@ -45,8 +39,18 @@
                     </div>
                     
                     <div class="w-[20%] h-full flex items-center justify-center">
-                        <button class="text-red-500 border border-red-500 rounded-lg py-4 px-6"><i class="fa-solid fa-trash-can"></i></button>
+                        <button class="text-red-500 border border-red-500 rounded-lg py-4 px-6 hover:border-2"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
+                </div>
+
+                <div class="w-full flex items-center justify-between bottom-0 sticky bg-[#111015] pb-4">
+                    <p class="text-xl font-bold w-[45%] pl-4">Total: <span class="text-[#14c458]">113,55 €</span></p>
+                    <button @click="pagar" class="w-[20%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:text-red-500 hover:border-red-500">
+                        Vaciar  <i class="fa-regular fa-circle-xmark"></i>
+                    </button>
+                    <button @click="pagar" class="w-[30%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:text-[#14c458] hover:border-[#14c458]">
+                        Confirmar  <i class="fa-regular fa-circle-check"></i>
+                    </button>
                 </div>
             </div>
 
