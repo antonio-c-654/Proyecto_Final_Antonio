@@ -28,16 +28,18 @@
         </div>
 
         <h1 class="text-[#14c458]">Otros metodos de pago online</h1>
-        <div v-for="met in metodos_pago" :key="met.id" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
+        <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.id)" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
           <p class="w-[30%]">{{ met.nombre }}</p>
           <img :src="met.logo" class="w-[40%] md:w-[5vw]">
-          <div class="w-[30%] h-full flex justify-end">
-            <input type="radio" id="met_pago" name="met_pago" :value="met.id">
+          <div class="w-[30%] h-full flex items-center justify-end">
+            <i v-if="metodo_pago==met.id" class="fa-solid fa-circle-check text-[#14c458]"></i>
           </div>
         </div>
       </div>
 
-      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400 my-8">Pagar</button>
+      <p>{{ metodo_pago }}</p>
+      <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Cancelar</button>
+      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
 
     </div>
 
@@ -71,6 +73,11 @@ import CardAtroposVue from '@/components/CardAtroposVue.vue';
 
 export default {
   components: { CardAtroposVue },
+  data(){
+    return {
+      metodo_pago: null
+    }
+  },
   computed:{
     ...mapState(['metodos_pago'])
   },
@@ -84,6 +91,12 @@ export default {
       this.toast.success("Correcto", {
         timeout: 2000
       });
+    },
+    cambiarMetodoPago(valor_metodo){
+      this.metodo_pago = valor_metodo
+    },
+    volverInicio(){
+      this.$router.push( {name: 'inicio'} )
     }
   }    
 
