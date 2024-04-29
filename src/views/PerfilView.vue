@@ -18,11 +18,10 @@
       <div class="mt-4 p-2 md:flex md:flex-col">
         <label>Expositor de medallas</label>
         <div id="expositor" class="w-full md:w-[30vw] h-auto flex items-center justify-evenly p-4 mb-4 mt-2 rounded-lg bg-[#26262c border border-[#14c458]">
-          <!-- <img src="../assets/medal_1.png" class="h-[70px]"> -->
-          <medal1-atropos-vue-vue></medal1-atropos-vue-vue>
-          <medal1-atropos-vue-vue></medal1-atropos-vue-vue>
-          <medal1-atropos-vue-vue></medal1-atropos-vue-vue>
-          <medal1-atropos-vue-vue></medal1-atropos-vue-vue>
+          <medal-atropos-vue-vue :medal_img="medal_src_1"></medal-atropos-vue-vue>
+          <medal-atropos-vue-vue :medal_img="medal_src_2"></medal-atropos-vue-vue>
+          <medal-atropos-vue-vue :medal_img="medal_src_3"></medal-atropos-vue-vue>
+          <medal-atropos-vue-vue :medal_img="medal_src_4"></medal-atropos-vue-vue>
         </div>
         <label>Nueva contraseña</label>
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
@@ -41,14 +40,18 @@
 
 <script>
 // atropos
-import Medal1AtroposVueVue from '@/components/Medal1AtroposVue.vue'
+import MedalAtroposVueVue from '@/components/MedalAtroposVue.vue'
 
 export default {
-  components: { Medal1AtroposVueVue },
+  components: { MedalAtroposVueVue },
   data(){
     return{
       password: null,
-      direccion: null
+      direccion: null,
+      medal_src_1: require('@/assets/medal_1.png'),
+      medal_src_2: require('@/assets/medal_2.png'),
+      medal_src_3: require('@/assets/medal_3.png'),
+      medal_src_4: require('@/assets/medal_4.png'),
     }
   },
   methods:{

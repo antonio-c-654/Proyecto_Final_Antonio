@@ -6,7 +6,7 @@
       
       <img
       data-atropos-offset="0.5"
-      src="../assets/medal_1.png" class="h-[70px]">
+      :src="medal_img" class="h-[70px]">
       
     </atropos-component>
 
@@ -22,7 +22,13 @@ import AtroposComponent from 'atropos/element';
 customElements.define('atropos-component', AtroposComponent);
 
 export default {
-  name: 'Medal1AtroposVue',
+  name: 'MedalAtroposVue',
+  props: {
+    medal_img: {
+      type: String,
+      required: true
+    }
+  }
 }
 </script>
 
