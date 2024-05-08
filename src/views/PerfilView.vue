@@ -12,7 +12,7 @@
     <div class="bg-[#111015] text-white flex flex-col items-center min-h-[90vh] w-full">
       
       <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-[#22222a]">
-        <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full border-2 border-[#14c458]">
+        <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full">
         <p class="ml-4">manolo_000@gmail.com</p>
       </div>
       <div class="mt-4 p-2 md:flex md:flex-col">
