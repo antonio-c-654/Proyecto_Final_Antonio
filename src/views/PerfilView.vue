@@ -9,27 +9,36 @@
       <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Cerrar sesión</router-link>
     </nav>
     
-    <div class="bg-[#111015] text-white flex flex-col items-center h-[90vh] w-full">
+    <div class="bg-[#111015] text-white flex flex-col items-center min-h-[90vh] w-full">
       
       <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-gradient-to-r from-[#22222a] via-[#22222a] to-teal-900">
-        <img src="../assets/pfp_burger_1.jpg" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full border-2 border-[#14c458]">
+        <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full border-2 border-[#14c458]">
         <p class="ml-4">manolo_000@gmail.com</p>
       </div>
       <div class="mt-4 p-2 md:flex md:flex-col">
         <label>Expositor de medallas</label>
-        <div id="expositor" class="w-full md:w-[30vw] h-auto flex items-center justify-evenly p-4 mb-4 mt-2 rounded-lg bg-[#26262c border border-[#14c458]">
+        <div id="expositor" class="w-full md:w-[30vw] h-auto flex items-center justify-evenly p-4 mb-4 mt-2 rounded-lg border border-[#14c458]">
           <medal-atropos-vue-vue :medal_img="medal_src_1"></medal-atropos-vue-vue>
           <medal-atropos-vue-vue :medal_img="medal_src_2"></medal-atropos-vue-vue>
           <medal-atropos-vue-vue :medal_img="medal_src_3"></medal-atropos-vue-vue>
           <medal-atropos-vue-vue :medal_img="medal_src_4"></medal-atropos-vue-vue>
         </div>
+        <label>Foto de perfil</label>
+        <div id="imgs_perfil" class="w-full md:w-[30vw] h-auto flex items-center justify-evenly flex-wrap p-4 mb-4 mt-2 rounded-lg border border-[#14c458]">
+          <img @click="elegir_pfp(pfp_1_burger)" :src="pfp_1_burger" class="h-[70px] rounded-full cursor-pointer hover:border-2 hover:border-[#14c458]">
+          <img @click="elegir_pfp(pfp_2_spicy)" :src="pfp_2_spicy" class="h-[70px] rounded-full cursor-pointer hover:border-2 hover:border-[#14c458]">
+          <img @click="elegir_pfp(pfp_3_chef)" :src="pfp_3_chef" class="h-[70px] rounded-full cursor-pointer hover:border-2 hover:border-[#14c458]">
+          <img @click="elegir_pfp(pfp_4_fries)" :src="pfp_4_fries" class="h-[70px] rounded-full cursor-pointer hover:border-2 hover:border-[#14c458]">
+          <img @click="elegir_pfp(pfp_5_icecream)" :src="pfp_5_icecream" class="h-[70px] rounded-full cursor-pointer hover:border-2 hover:border-[#14c458]">
+        </div>
         <label>Nueva contraseña</label>
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <label>Dirección</label>
-        <input type="password" placeholder="Dirección" v-model="direccion" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
+        <input type="text" placeholder="Dirección" v-model="direccion" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
+          <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
           <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button>
-          <button class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400 ml-4">Guardar</button>
+          <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400 ml-4">Guardar</button>
         </div>
         
       </div>
@@ -52,12 +61,25 @@ export default {
       medal_src_2: require('@/assets/medal_2.png'),
       medal_src_3: require('@/assets/medal_3.png'),
       medal_src_4: require('@/assets/medal_4.png'),
+      pfp_actual: require('@/assets/pfp_1_burger.jpg'),
+      pfp_1_burger: require('@/assets/pfp_1_burger.jpg'),
+      pfp_2_spicy: require('@/assets/pfp_2_spicy.jpg'),
+      pfp_3_chef: require('@/assets/pfp_3_chef.jpg'),
+      pfp_4_fries: require('@/assets/pfp_4_fries.jpg'),
+      pfp_5_icecream: require('@/assets/pfp_5_icecream.jpg'),
     }
   },
   methods:{
+    guardarCampos(){
+      console.log(this.pfp_actual, this.password, this.direccion) // foto = /img/pfp_1_burger.03efad8e.jpg //string
+      this.vaciarCampos()
+    },
     vaciarCampos(){
       this.password = null
       this.direccion = null
+    },
+    elegir_pfp(new_pfp){
+      this.pfp_actual = new_pfp
     }
   }
 }
