@@ -19,7 +19,7 @@
             <div id="cart_contenido" v-if="cartVisible" class="absolute top-[11vh] right-[12vw] w-[40vw] h-[60vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md px-4 pt-4">
 
                 <div class="w-full flex justify-end text-red-500">
-                    <p @click="mostrarCart()" class="hover:underline hover:underline-offset-4 cursor-pointer">Cerrar <i class="fa-regular fa-circle-xmark"></i></p>
+                    <p @click="mostrarCart()" class="cursor-pointer text-3xl hover:scale-110"><i class="fa-solid fa-xmark"></i></p>
                 </div>
                 
                 <div v-for="i in 4" :key="i" class="w-full h-auto flex items-center bg-[#22222a] rounded-md">
@@ -43,13 +43,13 @@
                     </div>
                 </div>
 
-                <div class="w-full flex items-center justify-between bottom-0 sticky bg-[#111015] pb-4">
+                <div class="w-full flex items-center justify-between bottom-0 sticky bg-[#111015] pb-4 pt-2">
                     <p class="text-xl font-bold w-[45%] pl-4">Total: <span class="text-[#14c458]">113,55 €</span></p>
-                    <button @click="pagar" class="w-[20%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:text-red-500 hover:border-red-500">
-                        Vaciar  <i class="fa-regular fa-circle-xmark"></i>
+                    <button @click="pagar" class="w-[20%] h-[40px] my-2 rounded-md cursor-pointer border hover:text-red-500 hover:border-red-500">
+                        Vaciar  <i class="fa-regular fa-circle-xmark ml-2"></i>
                     </button>
-                    <button @click="pagar" class="w-[30%] h-[40px] bg-black my-2 rounded-md cursor-pointer border hover:text-[#14c458] hover:border-[#14c458]">
-                        Confirmar  <i class="fa-regular fa-circle-check"></i>
+                    <button @click="pagar" class="w-[30%] h-[40px] my-2 rounded-md cursor-pointer border hover:text-[#14c458] hover:border-[#14c458]">
+                        Confirmar  <i class="fa-regular fa-circle-check ml-2"></i>
                     </button>
                 </div>
             </div>

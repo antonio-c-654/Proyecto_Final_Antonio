@@ -9,19 +9,11 @@
         </div>
         <div class="flex items-center gap-4">
             <span>Nuestras redes</span>
-            <i class="fa-brands fa-instagram text-2xl cursor-pointer hover:text-purple-400"></i>
-            <i class="fa-brands fa-youtube text-2xl cursor-pointer hover:text-red-500"></i>
-            <i class="fa-brands fa-tiktok text-2xl cursor-pointer hover:text-blue-300"></i>
-            <i class="fa-brands fa-pinterest text-2xl cursor-pointer hover:text-red-500"></i>
+            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram text-2xl cursor-pointer hover:text-purple-400"></i></a>
+            <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube text-2xl cursor-pointer hover:text-red-500"></i></a>
+            <a href="https://www.tiktok.com/"><i class="fa-brands fa-tiktok text-2xl cursor-pointer hover:text-blue-300"></i></a>
+            <a href="https://www.pinterest.com/"><i class="fa-brands fa-pinterest text-2xl cursor-pointer hover:text-red-500"></i></a>   
         </div>
-        
-        <!-- <div>
-            <span>rating <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i></span>
-        </div> -->
-        <!-- <div>
-            <span>location <i class="fa-solid fa-map-location-dot"></i></span>
-            <span>favourite <i class="fa-regular fa-heart"> <i class="fa-solid fa-heart"></i></i> </span>
-        </div> -->
     </footer>
 
 </template>

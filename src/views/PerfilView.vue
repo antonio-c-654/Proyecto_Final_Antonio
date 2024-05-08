@@ -11,7 +11,7 @@
     
     <div class="bg-[#111015] text-white flex flex-col items-center min-h-[90vh] w-full">
       
-      <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-gradient-to-r from-[#22222a] via-[#22222a] to-teal-900">
+      <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-[#22222a]">
         <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full border-2 border-[#14c458]">
         <p class="ml-4">manolo_000@gmail.com</p>
       </div>
@@ -37,8 +37,8 @@
         <input type="text" placeholder="Dirección" v-model="direccion" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
           <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
-          <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button>
-          <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400 ml-4">Guardar</button>
+          <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Descartar</button>
+          <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600bl bg-gradient-to-br from-blue-500 to-teal-400 ml-4">Guardar</button>
         </div>
         
       </div>
