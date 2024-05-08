@@ -17,12 +17,6 @@
 </template>
 
 <script>
-
-// import Atropos component
-import AtroposComponent from 'atropos/element';
-// register Atropos component
-customElements.define('atropos-component', AtroposComponent);
-
 export default {
   name: 'CardAtroposVue',
 }
