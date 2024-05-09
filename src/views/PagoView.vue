@@ -39,26 +39,38 @@
       </div>
 
       <p>{{ metodo_pago }}</p>
-      <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
-      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
+      <!-- <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
+      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button> -->
 
     </div>
 
-    <div id="parte_der" class="md:w-[50%] h-full p-4">
-      <h1 class="text-[#14c458] text-3xl mb-4">Resumen de la compra</h1>
-      <div class="flex flex-col gap-2">
-        <div id="cabecera" class="bg-teal-400 w-full flex items-center justify-between py-4 px-6">
-          <span class="text-sm">Nombre</span>
-          <span class="text-sm">Cocción</span>
-          <span class="text-sm">Precio</span>
-        </div>
-        <div v-for="i in 4" :key="i" class="w-full flex items-center justify-between bg-[#22222a] rounded-md p-6">
-          <span class="text-sm">Hamburguesa Deluxe</span>
-          <span class="text-sm">Al punto</span>
-          <span class="text-sm text-teal-400">14.99 €</span>
-        </div>
-      </div>
-      <h1 class="text-2xl my-6">Total: <span class="text-[#14c458]">113€</span> </h1>
+    <div id="parte_der_resumen" class="md:w-[50%] h-full p-4">
+      <h1 class="text-[#14c458] text-lg md:text-3xl mb-4">Resumen de la compra</h1>
+      <table class="w-full text-sm md:text-base">
+        <thead>
+          <tr class="w-full flex justify-between bg-teal-400 rounded-md p-2 md:p-4">
+            <th class="w-[35%] text-start">Nombre</th>
+            <th class="w-[20%] text-start">Cocción</th>
+            <th class="w-[20%] text-end">Precio</th>
+          </tr>
+        </thead>
+        <tbody class="mt-2 mb-4 flex flex-col gap-2">
+          <tr v-for="i in 4" :key="i" class="w-full flex items-center justify-between bg-[#22222a] rounded-md p-2 md:p-4">
+            <td class="w-[35%]">Hamburguesa Deluxe</td>
+            <td class="w-[20%]">Poco hecha</td>
+            <td class="w-[20%] text-teal-400 text-end">14.99 €</td>
+          </tr>
+        </tbody>
+        <tfoot class="border-t">
+          <tr class="bg-blend-lighten hover:bg-blend-darken flex justify-between text-xl font-bold p-2 md:p-4">
+            <th>Total</th>
+            <td class="text-[#14c458]">113€</td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- <h1 class="text-2xl my-6">Total: <span class="text-[#14c458]">113€</span></h1> -->
+      <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
+      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
     </div>
 
   </div>
