@@ -19,20 +19,21 @@
 
           <div class="md:flex md:flex-col md:justify-center md:w-[50%] md:pl-8">
             <p>Numero de tarjeta</p>
-            <input type="text" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
+            <input type="tel" v-model="num_tarjeta" pattern="[0-9\s]" minlength="13" maxlength="16" placeholder="xxxx xxxx xxxx xxxx" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
             <p>Fecha de caducidad</p>
-            <input type="text" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
+            <input type="month" v-model="fecha_cad_tarjeta" :min="fecha_actual" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
             <p>Codigo CCV de tarjeta</p>
-            <input type="text" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
+            <input type="tel" v-model="cod_ccv" min="0" max="999" maxlength="3" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
           </div>
         </div>
+        <p>{{ num_tarjeta }} - {{ fecha_cad_tarjeta }} - {{ cod_ccv }} - {{ fecha_actual }}</p>
 
         <h1 class="text-[#14c458]">Otros metodos de pago online</h1>
         <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.id)" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
           <p class="w-[30%]">{{ met.nombre }}</p>
           <img :src="met.logo" class="w-[40%] md:w-[5vw]">
           <div class="w-[30%] h-full flex items-center justify-end">
-            <i v-if="metodo_pago==met.id" class="fa-solid fa-circle-check text-[#14c458]"></i>
+            <i v-if="metodo_pago==met.id" class="fa-solid fa-circle-check text-[#14c458] md:text-2xl"></i>
           </div>
         </div>
       </div>
@@ -75,7 +76,11 @@ export default {
   components: { CardAtroposVue },
   data(){
     return {
-      metodo_pago: null
+      metodo_pago: null,
+      num_tarjeta: null,
+      fecha_cad_tarjeta: null,
+      cod_ccv: null,
+      fecha_actual: this.obtenerFechaActual()
     }
   },
   computed:{
@@ -85,7 +90,7 @@ export default {
       const toast = useToast();      
       return { toast }
   },
-  methods: {
+  methods:{
     alertaToast() {
       // this.toast.success("Correcto");
       this.toast.success("Correcto", {
@@ -97,9 +102,14 @@ export default {
     },
     volverInicio(){
       this.$router.push( {name: 'inicio'} )
+    },
+    obtenerFechaActual(){
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1; //meses js estan en array desde 0
+      return `${year}-${month.toString().padStart(2, '0')}`; //formato YYYY-MM
     }
-  }    
-
+  }
 }
 </script>
 
