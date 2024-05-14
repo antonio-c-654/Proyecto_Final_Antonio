@@ -46,10 +46,10 @@
                 <div class="w-full flex items-center justify-between bottom-0 sticky bg-[#111015] pb-4 pt-2">
                     <p class="text-xl font-bold w-[45%] pl-4">Total: <span class="text-[#14c458]">113,55 €</span></p>
                     <button @click="pagar" class="w-[20%] h-[40px] my-2 rounded-md cursor-pointer border hover:text-red-500 hover:border-red-500">
-                        Vaciar  <i class="fa-regular fa-circle-xmark ml-2"></i>
+                        Vaciar<i class="fa-regular fa-circle-xmark ml-2"></i>
                     </button>
                     <button @click="pagar" class="w-[30%] h-[40px] my-2 rounded-md cursor-pointer border hover:text-[#14c458] hover:border-[#14c458]">
-                        Confirmar  <i class="fa-regular fa-circle-check ml-2"></i>
+                        Confirmar<i class="fa-regular fa-circle-check ml-2"></i>
                     </button>
                 </div>
             </div>
