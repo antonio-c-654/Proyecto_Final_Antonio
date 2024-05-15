@@ -29,11 +29,11 @@
         <p>{{ num_tarjeta }} - {{ fecha_cad_tarjeta }} - {{ cod_ccv }} - {{ fecha_actual }}</p>
 
         <h1 class="text-[#14c458]">Otros metodos de pago online</h1>
-        <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.id)" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
+        <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.nombre)" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
           <p class="w-[30%]">{{ met.nombre }}</p>
           <img :src="met.logo" class="w-[40%] md:w-[5vw]">
           <div class="w-[30%] h-full flex items-center justify-end">
-            <i v-if="metodo_pago==met.id" class="fa-solid fa-circle-check text-[#14c458] md:text-2xl"></i>
+            <i v-if="metodo_pago==met.nombre" class="fa-solid fa-circle-check text-[#14c458] md:text-2xl"></i>
           </div>
         </div>
       </div>
