@@ -1,22 +1,25 @@
 <template>
 
-  <div class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
+  <form action="" method="POST" class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
 
     <div id="parte_izq" class="md:w-[50%] h-full p-4">
     
       <h1 class="text-[#14c458] text-3xl">Métodos de pago</h1>
       <div class="flex flex-col gap-4">
-        <p class="">Seleccione metodo de pago</p>
-        <h1 class="text-[#14c458]">Tarjeta</h1>
+        <p class="my-2">Seleccione método de pago</p>
+        <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.nombre)" class="border flex items-center justify-between h-[15vh] md:h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
+          <p class="w-[30%]">{{ met.nombre }}</p>
+          <img :src="met.logo" class="w-[40%] md:w-[5vw]">
+          <div class="w-[30%] h-full flex items-center justify-end">
+            <i v-if="metodo_pago==met.nombre" class="fa-solid fa-circle-check text-[#14c458] md:text-2xl"></i>
+          </div>
+        </div>
+      </div>
 
-        <div class="md:w-[50vw] md:flex">
-
-          <!-- <div class="card_atropos">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/384/393/small_2x/credit-card-clipart-design-illustration-free-png.png" class="w-[70vw] md:w-[20vw] mb-2">
-          </div> -->
-
+      <div v-if="metodo_pago=='Tarjeta'" action="" method="post" id="form_tarjeta" class="">
+        <h1 class="text-[#14c458] my-2">Tarjeta</h1>
+        <div class="w-full md:flex">
           <CardAtroposVue></CardAtroposVue>
-
           <div class="md:flex md:flex-col md:justify-center md:w-[50%] md:pl-8">
             <p>Numero de tarjeta</p>
             <input type="tel" v-model="num_tarjeta" pattern="[0-9\s]" minlength="13" maxlength="16" placeholder="xxxx xxxx xxxx xxxx" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
@@ -26,18 +29,9 @@
             <input type="tel" v-model="cod_ccv" min="0" max="999" maxlength="3" class="p-1 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458] mb-2">
           </div>
         </div>
-        <p>{{ num_tarjeta }} - {{ fecha_cad_tarjeta }} - {{ cod_ccv }} - {{ fecha_actual }}</p>
-
-        <h1 class="text-[#14c458]">Otros metodos de pago online</h1>
-        <div v-for="met in metodos_pago" :key="met.id" @click="cambiarMetodoPago(met.nombre)" class="border flex items-center justify-between h-[10vh] md:w-[30vw] py-4 px-6 rounded-lg bg-[#22222a] hover:border-[#14c458]">
-          <p class="w-[30%]">{{ met.nombre }}</p>
-          <img :src="met.logo" class="w-[40%] md:w-[5vw]">
-          <div class="w-[30%] h-full flex items-center justify-end">
-            <i v-if="metodo_pago==met.nombre" class="fa-solid fa-circle-check text-[#14c458] md:text-2xl"></i>
-          </div>
-        </div>
       </div>
 
+      <p>{{ num_tarjeta }} - {{ fecha_cad_tarjeta }} - {{ cod_ccv }} - {{ fecha_actual }}</p>
       <p>{{ metodo_pago }}</p>
       <!-- <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
       <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button> -->
@@ -45,6 +39,7 @@
     </div>
 
     <div id="parte_der_resumen" class="md:w-[50%] h-full p-4">
+      
       <h1 class="text-[#14c458] text-lg md:text-3xl mb-4">Resumen de la compra</h1>
       <table class="w-full text-sm md:text-base">
         <thead>
@@ -70,10 +65,10 @@
       </table>
       <!-- <h1 class="text-2xl my-6">Total: <span class="text-[#14c458]">113€</span></h1> -->
       <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
-      <button @click="alertaToast" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
+      <button @click="alertaToast" type="submit" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
     </div>
 
-  </div>
+  </form>
 
 </template>
 
