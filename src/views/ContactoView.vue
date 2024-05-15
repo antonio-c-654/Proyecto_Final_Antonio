@@ -30,7 +30,7 @@
           <input type="checkbox" id="polit_priv" v-model="politica" class="p-2 rounded-md">
           <label for="polit_priv" class="text-white md:text-base text-sm"> He leído y acepto la política de privacidad</label>
         </div>
-        <button class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400">Enviar</button>
+        <button class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Enviar</button>
 
         <!-- <span>{{ nombre }} - {{ email }} - {{ telefono }} - {{ categoria }} - {{ mensaje }} - {{ politica }}</span> -->
       </div>

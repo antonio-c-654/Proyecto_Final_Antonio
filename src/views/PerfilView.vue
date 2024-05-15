@@ -38,7 +38,7 @@
         <div>
           <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
           <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Descartar</button>
-          <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600bl bg-gradient-to-br from-blue-500 to-teal-400 ml-4">Guardar</button>
+          <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600bl bg-gradient-to-br from-[#14c458] to-teal-400 ml-4">Guardar</button>
         </div>
         
       </div>
