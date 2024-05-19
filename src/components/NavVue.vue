@@ -58,9 +58,6 @@ export default {
         }
     },
     methods:{
-        pagar(){
-            this.$router.push( {name: 'pago', params:{id: 1}} )
-        },
         toogleMenuHam(){
             this.burger_menu_open = !this.burger_menu_open
         }
