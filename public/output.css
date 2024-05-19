@@ -1289,6 +1289,10 @@ video {
     display: flex;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-\[100vh\] {
     height: 100vh;
   }
