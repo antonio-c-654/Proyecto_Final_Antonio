@@ -34,10 +34,10 @@
         <div class="w-full flex flex-col md:flex-row items-center justify-between bottom-0 sticky bg-[#111015] pb-4 md:pt-2">
             <p class="text-sm md:text-xl font-bold md:w-[45%] w-full md:pl-4 py-2 md:py-0">Total: <span class="text-[#14c458]">113,55 €</span></p>
             <div class="md:w-[50%] w-full flex justify-end gap-2">
-                <button @click="pagar" class="w-[40%] h-[40px] text-sm md:text-base rounded-md cursor-pointer border hover:text-red-500 hover:border-red-500">
+                <button @click="pagar" class="w-[120px] h-[35px] text-sm md:text-base rounded-md cursor-pointer text-white hover:border hover:border-white-600 bg-slate-500">
                     Vaciar<i class="hidden fa-regular fa-circle-xmark ml-2"></i>
                 </button>
-                <button @click="pagar" class="w-[50%] h-[40px] text-sm md:text-base rounded-md cursor-pointer border hover:text-[#14c458] hover:border-[#14c458]">
+                <button @click="pagar" class="w-[160px] h-[35px] text-sm md:text-base rounded-md cursor-pointer text-white hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400">
                     Confirmar<i class="fa-regular fa-circle-check ml-2"></i>
                 </button>
             </div>
