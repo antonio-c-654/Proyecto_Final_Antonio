@@ -1,14 +1,30 @@
 export const usuarios = [
     {
         id: 0,
-        nombre: 'admin',
+        email: 'admin@a.com',
         password: 'admin',
-        email: 'admin@a.com'
+        datos: {
+            nombre: 'admin',
+        },
+        caracteristicas: {
+            foto_perfil: 1,
+            favoritos: [],
+            medallas: ["medal_1", "medal_2", "medal_3", "medal_4"],
+        },
+        isAdmin: true
     },
     {
         id: 1,
-        nombre: 'paco',
+        email: 'paco@a.com',
         password: 'paco',
-        email: 'paco@a.com'
+        datos: {
+            nombre: 'paco',
+        },
+        caracteristicas: {
+            foto_perfil: 1,
+            favoritos: [],
+            medallas: [],
+        },
+        isAdmin: false
     },
 ]
