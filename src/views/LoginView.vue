@@ -10,7 +10,7 @@
         <input type="password" placeholder="Contraseña" v-model="password" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <router-link to="/register" class="text-blue-500 underline w-full">¿No tienes cuenta? Regístrate</router-link>
         <router-link to="/register" class="text-blue-500 underline w-full">¿Has olvidado tu contraseña?</router-link>
-        <button type="submit" class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Enviar</button>
+        <button @click="loguear()" type="submit" class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Enviar</button>
       </form>
     </div>
 
@@ -22,12 +22,28 @@
 <script>
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
+import { mapMutations, mapState } from 'vuex'
 export default {
   components: { NavVue, FooterVue },
   data(){
     return{
       email: null,
       password: null,
+    }
+  },
+  computed: {
+        ...mapState(['user_logueado'])
+  },
+  methods: {
+    ...mapMutations(['LOGIN_USER']),
+    loguear(){
+      const logUser = {email: this.email, password: this.password}
+      this.LOGIN_USER(logUser)
+      if (this.user_logueado != -1) {
+        this.$router.push( {name: 'perfil', params: {id: this.user_logueado}} )
+      } else{
+        alert('datos no coinciden')
+      }
     }
   }
 }
