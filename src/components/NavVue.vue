@@ -13,6 +13,7 @@
             <router-link to="/perfil/1" class="">Perfil</router-link>
             <router-link to="/register" class="">Registrarse</router-link>
             <router-link to="/login" class="">Iniciar sesión</router-link>
+            <p @click="logout()">Cerrar sesión</p>
         </div>
 
         <div id="nav_izq" class="w-[60vw] h-full md:flex hidden items-center justify-around">
@@ -37,8 +38,12 @@
                 <router-link to="/login" class="">Iniciar sesión</router-link>
                 <i class="fa-solid fa-user ml-3"></i>
             </div>
+            <div id="ir_a_perfil" v-if="!burger_menu_open" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+                <span>Perfil</span>
+                <i class="fa-solid fa-user-plus ml-3"></i>
+            </div>
             <div id="login_sesion_close" v-if="!burger_menu_open" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
-                <span>Cerrar sesión</span>
+                <span @click="logout()">Cerrar sesión</span>
                 <i class="fa-solid fa-right-to-bracket ml-3"></i>
             </div>
         </div>
@@ -49,6 +54,7 @@
 
 <script>
 import CartVue from '@/components/CartVue.vue';
+import { mapMutations, mapState } from 'vuex'
 export default {
     name: 'NavVue',
     components: { CartVue },
@@ -57,10 +63,19 @@ export default {
             burger_menu_open: false
         }
     },
+    computed: {
+        ...mapState(['user_logueado'])
+    },
     methods:{
+        ...mapMutations(['LOGOUT']),
+        logout(){
+            this.LOGOUT()
+            this.$router.push( {name: 'inicio'} )
+        },
         toogleMenuHam(){
             this.burger_menu_open = !this.burger_menu_open
-        }
+        },
+        
     }
 }
 </script>
