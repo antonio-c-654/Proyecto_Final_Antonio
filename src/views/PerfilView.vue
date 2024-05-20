@@ -1,13 +1,8 @@
 <template>
 
   <div>
-    <nav class="bg-[#14c458] text-white text-lg font-bold tracking-widest w-full h-[10vh] flex items-center justify-between px-4 md:px-6">
-      <div class="h-full flex items-center">
-        <img src="../assets/logo_v_3.png" class="h-[80%]">
-      </div>
-      <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Inicio</router-link>
-      <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Cerrar sesión</router-link>
-    </nav>
+    
+    <NavVue></NavVue>
     
     <div class="bg-[#111015] text-white flex flex-col items-center min-h-[90vh] w-full">
       
@@ -48,11 +43,12 @@
 </template>
 
 <script>
+import NavVue from '@/components/NavVue.vue';
 // atropos
 import MedalAtroposVueVue from '@/components/MedalAtroposVue.vue'
 
 export default {
-  components: { MedalAtroposVueVue },
+  components: { MedalAtroposVueVue, NavVue },
   data(){
     return{
       password: null,
