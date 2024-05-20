@@ -28,8 +28,6 @@
         </div>
         <label>Nueva contraseña</label>
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
-        <label>Dirección</label>
-        <input type="text" placeholder="Dirección" v-model="direccion" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
           <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
           <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Descartar</button>
@@ -67,12 +65,11 @@ export default {
   },
   methods:{
     guardarCampos(){
-      console.log(this.pfp_actual, this.password, this.direccion) // foto = /img/pfp_1_burger.03efad8e.jpg //string
+      console.log(this.pfp_actual, this.password) // foto = /img/pfp_1_burger.03efad8e.jpg //string
       this.vaciarCampos()
     },
     vaciarCampos(){
       this.password = null
-      this.direccion = null
     },
     elegir_pfp(new_pfp){
       this.pfp_actual = new_pfp
