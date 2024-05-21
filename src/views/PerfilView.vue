@@ -1,13 +1,8 @@
 <template>
 
   <div>
-    <nav class="bg-[#14c458] text-white text-lg font-bold tracking-widest w-full h-[10vh] flex items-center justify-between px-4 md:px-6">
-      <div class="h-full flex items-center">
-        <img src="../assets/logo_v_3.png" class="h-[80%]">
-      </div>
-      <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Inicio</router-link>
-      <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Cerrar sesión</router-link>
-    </nav>
+    
+    <NavVue></NavVue>
     
     <div class="bg-[#111015] text-white flex flex-col items-center min-h-[90vh] w-full">
       
@@ -33,8 +28,6 @@
         </div>
         <label>Nueva contraseña</label>
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
-        <label>Dirección</label>
-        <input type="text" placeholder="Dirección" v-model="direccion" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
           <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
           <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Descartar</button>
@@ -48,11 +41,12 @@
 </template>
 
 <script>
+import NavVue from '@/components/NavVue.vue';
 // atropos
 import MedalAtroposVueVue from '@/components/MedalAtroposVue.vue'
 
 export default {
-  components: { MedalAtroposVueVue },
+  components: { MedalAtroposVueVue, NavVue },
   data(){
     return{
       password: null,
@@ -71,12 +65,11 @@ export default {
   },
   methods:{
     guardarCampos(){
-      console.log(this.pfp_actual, this.password, this.direccion) // foto = /img/pfp_1_burger.03efad8e.jpg //string
+      console.log(this.pfp_actual, this.password) // foto = /img/pfp_1_burger.03efad8e.jpg //string
       this.vaciarCampos()
     },
     vaciarCampos(){
       this.password = null
-      this.direccion = null
     },
     elegir_pfp(new_pfp){
       this.pfp_actual = new_pfp
