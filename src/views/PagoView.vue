@@ -1,6 +1,6 @@
 <template>
 
-  <form action="" method="POST" class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
+  <form class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
 
     <div id="parte_izq" class="md:w-[50%] h-full p-4">
     
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div v-if="metodo_pago=='Tarjeta'" action="" method="post" id="form_tarjeta" class="">
+      <div v-if="metodo_pago=='Tarjeta'" id="form_tarjeta" class="">
         <h1 class="text-[#14c458] my-2">Tarjeta</h1>
         <div class="w-full md:flex">
           <CardAtroposVue></CardAtroposVue>

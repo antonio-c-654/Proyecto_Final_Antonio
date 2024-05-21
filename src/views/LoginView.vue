@@ -4,7 +4,7 @@
     <NavVue></NavVue>
 
     <div class="bg-[#111015] text-white flex flex-col items-center pt-6 md:h-[85vh] min-h-[70vh] h-auto">
-      <form action="" method="POST" class="md:w-[30vw] h-full w-[90vw] flex flex-col md:items-center md:gap-8 gap-6 mb-4">
+      <form class="md:w-[30vw] h-full w-[90vw] flex flex-col md:items-center md:gap-8 gap-6 mb-4">
         <p class="md:text-2xl text-xl">Login</p>
         <input type="email" placeholder="Email" v-model="email" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <input type="password" placeholder="Contraseña" v-model="password" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
