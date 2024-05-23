@@ -4,7 +4,7 @@
     <NavVue></NavVue>
 
     <div class="bg-[#111015] text-white flex flex-col items-center pt-6 md:h-[85vh] min-h-[70vh] h-auto">
-      <form class="md:w-[30vw] h-full w-[90vw] flex flex-col md:items-center md:gap-8 gap-6 mb-4">
+      <form @submit.prevent="register" class="md:w-[30vw] h-full w-[90vw] flex flex-col md:items-center md:gap-8 gap-6 mb-4">
         <p class="md:text-2xl text-xl">Register</p>
         <input type="text" placeholder="Nombre" v-model="nombre" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <input type="email" placeholder="Email" v-model="email" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
@@ -27,6 +27,8 @@
 <script>
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
+import { useToast } from "vue-toastification";
+import axios from 'axios';
 export default {
   components: { NavVue, FooterVue },
   data(){
@@ -36,6 +38,38 @@ export default {
       password: null,
       politica: null,
     }
+  },
+  methods: {
+    async register() {
+      try {
+        const res = await axios.post('/api/users/register',
+          {
+            email: this.email,
+            password: this.password,
+            nombre: this.nombre
+          }
+        )
+
+        const datos = res.data
+        console.log(datos.mensaje)
+
+        if(datos && datos.estado == 'success'){
+          this.$router.push( {name: 'login'} )
+        } else {
+          this.toast.error(datos.mensaje, {
+            timeout: 2000,
+          });
+        }
+      } catch (error) {
+        // console.log('ha habido un error:', error)
+        this.toast.error('Ha habido un error:', error);
+      }
+    },
+
+  },
+  setup() {
+      const toast = useToast();      
+      return { toast }
   }
 }
 </script>
