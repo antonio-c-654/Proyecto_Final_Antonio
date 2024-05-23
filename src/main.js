@@ -9,6 +9,8 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css"; // Import the CSS or use your own!
 const options = {
     // You can set your default options here
+    maxToasts: 3,
+    position: "bottom-right",
 };
 
 // import Atropos component

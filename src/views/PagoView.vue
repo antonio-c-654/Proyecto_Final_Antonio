@@ -1,6 +1,6 @@
 <template>
 
-  <form class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
+  <form @submit.prevent="alertaToast" class="bg-[#111015] h-auto min-h-[100vh] md:h-[100vh] text-white flex flex-col md:flex-row">
 
     <div id="parte_izq" class="md:w-[50%] h-full p-4">
     
@@ -65,7 +65,7 @@
       </table>
       <!-- <h1 class="text-2xl my-6">Total: <span class="text-[#14c458]">113€</span></h1> -->
       <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
-      <button @click="alertaToast" type="submit" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
+      <button type="submit" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
     </div>
 
   </form>

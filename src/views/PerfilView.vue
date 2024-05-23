@@ -30,7 +30,7 @@
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
           <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
-          <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Descartar</button>
+          <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
           <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600bl bg-gradient-to-br from-[#14c458] to-teal-400 ml-4">Guardar</button>
         </div>
         
@@ -70,6 +70,7 @@ export default {
     },
     vaciarCampos(){
       this.password = null
+      this.$router.push( {name: 'inicio'} )
     },
     elegir_pfp(new_pfp){
       this.pfp_actual = new_pfp
