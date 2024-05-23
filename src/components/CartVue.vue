@@ -5,7 +5,7 @@
         <span class="absolute top-0 r-0 text-sm bg-teal-700 rounded-full px-1">0</span>
     </div>
 
-    <div id="cart_contenido" v-if="cart_visible" class="absolute top-[11vh] md:right-[12vw] right-0 md:w-[40vw] md:h-[60vh] w-full max-h-[89vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md px-4 pt-4">
+    <div id="cart_contenido" v-if="cart_visible" class="absolute top-[11vh] md:right-[12vw] right-0 md:w-[40vw] md:h-[60vh] w-full max-h-[89vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md px-4 pt-4 z-10">
         <div class="w-full flex justify-end text-red-500">
             <p @click="toogleCart()" class="cursor-pointer text-3xl hover:scale-110"><i class="fa-solid fa-xmark"></i></p>
         </div>
