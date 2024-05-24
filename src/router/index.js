@@ -36,6 +36,15 @@ const routes = [
     name: 'contacto',
     component: () => import('../views/ContactoView.vue')
   },
+  {
+    path: '/pagenotfound',
+    name: 'pagenotfound',
+    component: () => import('../views/PageNotFoundView.vue'),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/pagenotfound',
+  }
 ]
 
 const router = createRouter({

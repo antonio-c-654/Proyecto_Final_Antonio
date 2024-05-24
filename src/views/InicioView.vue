@@ -76,6 +76,7 @@ export default {
         position: "bottom-left",
         timeout: false,
         transition: "Vue-Toastification__fade",
+        maxToasts: 1,
       });
     }
   },
