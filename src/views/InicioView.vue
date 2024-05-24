@@ -60,6 +60,7 @@
 <script>
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
+import { useToast } from "vue-toastification";
 import { mapState } from 'vuex';
 export default {
   components: { NavVue, FooterVue },
@@ -69,8 +70,22 @@ export default {
   methods:{
     hacer_fav(){
       alert("Se ha guardado el prod")
+    },
+    popup_cookies(){
+      this.toast.info('Este sitio web utiliza cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra política de cookies.', {
+        position: "bottom-left",
+        timeout: false,
+        transition: "Vue-Toastification__fade",
+      });
     }
-  }
+  },
+  setup() {
+      const toast = useToast();      
+      return { toast }
+  },
+  mounted() {
+    this.popup_cookies();
+  },
 
 }
 </script>
