@@ -8,10 +8,10 @@
       
       <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-[#22222a]">
         <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full">
-        <p class="ml-4">manolo_000@gmail.com</p>
+        <p class="ml-4">manolo_07@gmail.com</p>
       </div>
       <div class="mt-4 p-2 md:flex md:flex-col">
-        <label>Expositor de medallas</label>
+        <label>Expositor de recompensas</label>
         <div id="expositor" class="w-full md:w-[30vw] h-auto flex items-center justify-evenly p-4 mb-4 mt-2 rounded-lg border border-[#14c458]">
           <medal-atropos-vue-vue :medal_img="medal_src_1"></medal-atropos-vue-vue>
           <medal-atropos-vue-vue :medal_img="medal_src_2"></medal-atropos-vue-vue>

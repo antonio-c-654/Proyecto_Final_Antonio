@@ -9,6 +9,7 @@ export default createStore({
   state: {
     // productos: productos,
     productos: [],
+    carrito: [],
     categorias: categorias,
     // usuarios: usuarios,
     metodos_pago: metodos_pago,
@@ -17,7 +18,16 @@ export default createStore({
   
   mutations: {
     SET_PRODUCTS(state, productos) {
-      state.productos = productos;
+      state.productos = productos
+    },
+    ADD_TO_CART(state, producto) {
+      state.carrito.push(producto)
+    },
+    REMOVE_FROM_CART(state, prod_id) {
+      state.carrito = state.carrito.filter(producto => producto.id != prod_id)
+    },
+    EMPTY_CART(state) {
+      state.carrito = []
     },
     LOGIN_USER(state, usuario){
       console.log(usuario)
@@ -39,10 +49,10 @@ export default createStore({
     async GET_ALL_PRODUCTS({ commit }){
       try {
         const res = await axios.get('/api/products/allProducts')
-        commit('SET_PRODUCTS', res.data.productos); // contexto
+        commit('SET_PRODUCTS', res.data.productos) // contexto
 
       } catch (error) {
-        this.toast.error('Ha habido un error:', error);
+        this.toast.error('Ha habido un error:', error)
       }
     }
   }

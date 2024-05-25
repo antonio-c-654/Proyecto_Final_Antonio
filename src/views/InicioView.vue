@@ -42,7 +42,7 @@
             </p>
             <div class="w-full flex justify-between items-center">
                 <span class="text-teal-400 lg:text-2xl md:text-xl text-lg">{{ producto.precio }} €</span>
-                <button class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Añadir</button>
+                <button @click="add_to_cart(producto)" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Añadir</button>
                 <!-- <button class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400">Añadir</button> -->
             </div>
         </div>
@@ -61,22 +61,26 @@
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
 import { useToast } from "vue-toastification";
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 export default {
   components: { NavVue, FooterVue },
   computed:{
     ...mapState(['productos', 'categorias'])
   },
   methods:{
+    ...mapMutations(['ADD_TO_CART']),
+    add_to_cart(producto){
+      this.toast.success('Añadido!', { timeout: 1000 })
+      this.ADD_TO_CART(producto)
+    },
     hacer_fav(){
-      alert("Se ha guardado el prod")
+      this.toast.info('Funcionalidad no implementada todavia')
     },
     popup_cookies(){
       this.toast.info('Este sitio web utiliza cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra política de cookies.', {
         position: "bottom-left",
         timeout: false,
         transition: "Vue-Toastification__fade",
-        maxToasts: 1,
       });
     }
   },
