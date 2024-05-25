@@ -19,16 +19,16 @@
             <div class="w-full flex justify-between">
                 <!-- <i class="fa-solid fa-circle-info text-white cursor-pointer"></i> -->
                 <div class="flex gap-2">
-                  <i v-if="producto.composicion.alergenos.includes('gluten')" class="fa-solid fa-wheat-awn text-yellow-600"></i>
-                  <i v-if="producto.composicion.alergenos.includes('crustaceos')" class="fa-solid fa-shrimp text-red-400"></i>
-                  <i v-if="producto.composicion.alergenos.includes('huevos')" class="fa-solid fa-egg text-fuchsia-100"></i>
-                  <i v-if="producto.composicion.alergenos.includes('pescado')" class="fa-solid fa-fish text-blue-400"></i>
-                  <i v-if="producto.composicion.alergenos.includes('soja')" class="fa-brands fa-envira text-lime-200"></i>
-                  <i v-if="producto.composicion.alergenos.includes('lacteos')" class="fa-solid fa-cheese text-yellow-400"></i>
+                  <i v-if="producto.alergenos.includes('gluten')" class="fa-solid fa-wheat-awn text-yellow-600"></i>
+                  <i v-if="producto.alergenos.includes('crustaceos')" class="fa-solid fa-shrimp text-red-400"></i>
+                  <i v-if="producto.alergenos.includes('huevos')" class="fa-solid fa-egg text-fuchsia-100"></i>
+                  <i v-if="producto.alergenos.includes('pescado')" class="fa-solid fa-fish text-blue-400"></i>
+                  <i v-if="producto.alergenos.includes('soja')" class="fa-brands fa-envira text-lime-200"></i>
+                  <i v-if="producto.alergenos.includes('lacteos')" class="fa-solid fa-cheese text-yellow-400"></i>
                 </div>
-                <!-- <i v-if="producto.caracteristicas.destacado" class="fa-solid fa-fire text-red-500"></i> -->
-                <i v-if="producto.caracteristicas.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
-                <i v-if="producto.caracteristicas.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
+                <!-- <i v-if="producto.destacado" class="fa-solid fa-fire text-red-500 cursor-pointer"></i> -->
+                <i v-if="producto.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
+                <i v-if="producto.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
             </div>
             <div class="flex justify-center w-full md:min-h-[70%] min-h-[50%] rounded-md overflow-hidden my-2">
               <img :src="producto.imagen" class="w-full h-full">
@@ -36,8 +36,8 @@
             <!-- <img src="../assets/burger_1.jpg" class="h-[150px] w-[150px]"> -->
             <p class="text-[#7c7c86] text-xs overflow-clip">
               <span class="text-[#dadbdb] font-bold text-base">{{ producto.nombre }}
-                <i v-if="producto.caracteristicas.picante" class="fa-solid fa-pepper-hot text-red-600 ml-2"></i>
-                <i v-if="producto.caracteristicas.vegano" class="fa-brands fa-envira text-green-400 ml-2"></i>
+                <i v-if="producto.picante" class="fa-solid fa-pepper-hot text-red-600 ml-2"></i>
+                <i v-if="producto.vegano" class="fa-brands fa-envira text-green-400 ml-2"></i>
               </span> <br> {{ producto.descripcion }}
             </p>
             <div class="w-full flex justify-between items-center">
@@ -85,6 +85,7 @@ export default {
       return { toast }
   },
   mounted() {
+    this.$store.dispatch('GET_ALL_PRODUCTS'); // cargar productos
     this.popup_cookies();
   },
 
