@@ -51,7 +51,7 @@
         <tbody class="mt-2 mb-4 flex flex-col gap-2">
           <tr v-for="prod in carrito" :key="prod.id" class="w-full flex items-center justify-between bg-[#22222a] rounded-md p-2 md:p-4">
             <td class="w-[35%]">{{ prod.nombre }}</td>
-            <td class="w-[20%]">Al punto</td>
+            <td class="w-[20%]">{{ prod.coccion }}</td>
             <td class="w-[20%] text-teal-400 text-end">{{ prod.precio }} €</td>
           </tr>
         </tbody>

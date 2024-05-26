@@ -10,6 +10,7 @@ export default createStore({
     // productos: productos,
     productos: [],
     carrito: [],
+    contador_id_cart_prod: 1,
     pago_total: 0,
     categorias: categorias,
     // usuarios: usuarios,
@@ -22,10 +23,24 @@ export default createStore({
       state.productos = productos
     },
     ADD_TO_CART(state, producto) {
-      state.carrito.push(producto)
+      // ... operador de propagacion, copia los campos y valores del objeto.
+      // Añadir las 2 nuevas propiedades permite borrar un elemento por su id_cart_prod unico que se genera con el contador_id_cart_prod del state y añadir su coccion.
+      // La coccion por defecto es al punto por si no se quiere elegir.
+      const new_Prod = { ...producto, id_cart_prod: state.contador_id_cart_prod, coccion: 'Al punto' }
+      state.carrito.push(new_Prod)
+      state.contador_id_cart_prod++
     },
-    REMOVE_FROM_CART(state, prod_id) {
-      state.carrito = state.carrito.filter(producto => producto.id != prod_id)
+    CHANGE_COOKING(state, datos) {
+      const { id_cart_prod, coccion } = datos
+      const prod_encontrado = state.carrito.find(prod => prod.id_cart_prod == id_cart_prod)
+      if (prod_encontrado) {
+        prod_encontrado.coccion = coccion
+      } else {
+        console.log('no se ha encontrado el producto (CART) --->', id_cart_prod, coccion)
+      }
+    },
+    REMOVE_FROM_CART(state, id_cart_prod) {
+      state.carrito = state.carrito.filter(producto => producto.id_cart_prod != id_cart_prod)
     },
     EMPTY_CART(state) {
       state.carrito = []

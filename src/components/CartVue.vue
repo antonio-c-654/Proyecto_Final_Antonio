@@ -20,16 +20,16 @@
                 </div>
                 
                 <div class="md:w-[25%] w-[35%]">
-                    <select class="bg-transparent text-white text-sm">
-                        <option value=null class="bg-[#22222a]" disabled selected>Cocción</option>
-                        <option value="poco-h" class="bg-[#22222a]">Poco hecha</option>
-                        <option value="punto-h" class="bg-[#22222a]">Al punto</option>
-                        <option value="muy-h" class="bg-[#22222a]">Muy hecha</option>
+                    <select @change="cambiar_coccion(prod.id_cart_prod, $event.target.value)" class="bg-transparent text-white text-sm">
+                        <option value="Al punto" class="bg-[#22222a]" disabled selected>Cocción</option>
+                        <option value="Poco hecha" class="bg-[#22222a]">Poco hecha</option>
+                        <option value="Al punto" class="bg-[#22222a]">Al punto</option>
+                        <option value="Muy hecha" class="bg-[#22222a]">Muy hecha</option>
                     </select>
                 </div>
                 
                 <div class="md:w-[20%] w-[17%] h-full flex items-center justify-center">
-                    <button @click="quitar_prod_cart(prod.id)" class="text-red-500 border border-red-500 rounded-lg py-1 px-2 md:py-4 md:px-6 hover:border-2"><i class="fa-solid fa-trash-can"></i></button>
+                    <button @click="quitar_prod_cart(prod.id_cart_prod)" class="text-red-500 border border-red-500 rounded-lg py-1 px-2 md:py-4 md:px-6 hover:border-2"><i class="fa-solid fa-trash-can"></i></button>
                 </div>
             </div>
         </div>
@@ -70,9 +70,12 @@ export default {
         },
     },
     methods:{
-        ...mapMutations(['REMOVE_FROM_CART', 'EMPTY_CART', 'SET_PAGO_TOTAL']),
-        quitar_prod_cart(prod_id){
-            this.REMOVE_FROM_CART(prod_id)
+        ...mapMutations(['REMOVE_FROM_CART', 'EMPTY_CART', 'SET_PAGO_TOTAL', 'CHANGE_COOKING']),
+        cambiar_coccion(id_cart_prod, coccion){
+            this.CHANGE_COOKING({id_cart_prod, coccion}) // Solo se le puede pasar un dato a la vez
+        },
+        quitar_prod_cart(id_cart_prod){
+            this.REMOVE_FROM_CART(id_cart_prod)
         },        
         vaciar_cart(){
             this.EMPTY_CART()
