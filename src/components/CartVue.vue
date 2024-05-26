@@ -5,29 +5,32 @@
         <span class="absolute top-0 r-0 text-sm bg-teal-700 rounded-full px-1">{{ num_prods_cart }}</span>
     </div>
 
-    <div id="cart_contenido" v-if="cart_visible" class="absolute top-[11vh] md:right-[12vw] right-0 md:w-[40vw] md:h-[60vh] w-full max-h-[89vh] flex flex-col items-center gap-2 border-2 border-[#14c458] overflow-y-scroll no-scrollbar bg-[#111015] rounded-md px-4 pt-4 z-10">
+    <div id="cart_contenido" v-if="cart_visible" class="absolute top-[11vh] md:right-[12vw] right-0 md:w-[40vw] md:h-[60vh] w-full max-h-[89vh] flex flex-col items-center gap-2 border-2 border-[#14c458] bg-[#111015] rounded-md px-4 pt-4 z-10">
         <div class="w-full flex justify-end text-red-500">
             <p @click="toogleCart()" class="cursor-pointer text-3xl hover:scale-110"><i class="fa-solid fa-xmark"></i></p>
         </div>
 
-        <div v-for="prod in carrito" :key="prod.id" class="w-full h-auto flex items-center bg-[#22222a] rounded-md py-2 md:py-0">
-            <img :src="prod.imagen" class="w-[20%] hidden md:flex">
-            <div class="md:w-[35%] w-[48%] flex flex-col justify-center h-full pl-4 gap-2">
-                <span class="md:text-sm text-xs">{{ prod.nombre }}</span>
-                <span class="md:text-sm text-xs text-teal-400">{{ prod.precio }} €</span>
-            </div>
-            
-            <div class="md:w-[25%] w-[35%]">
-                <select class="bg-transparent text-white text-sm">
-                    <option value=null class="bg-[#22222a]" disabled selected>Cocción</option>
-                    <option value="poco-h" class="bg-[#22222a]">Poco hecha</option>
-                    <option value="punto-h" class="bg-[#22222a]">Al punto</option>
-                    <option value="muy-h" class="bg-[#22222a]">Muy hecha</option>
-                </select>
-            </div>
-            
-            <div class="md:w-[20%] w-[17%] h-full flex items-center justify-center">
-                <button @click="quitar_prod_cart(prod.id)" class="text-red-500 border border-red-500 rounded-lg py-1 px-2 md:py-4 md:px-6 hover:border-2"><i class="fa-solid fa-trash-can"></i></button>
+        <div id="div_productos" class="h-[50vh] overflow-y-scroll no-scrollbar flex flex-col gap-2">
+            <p v-if="num_prods_cart == 0" class="text-base">Carrito vacío</p>
+            <div v-for="prod in carrito" :key="prod.id" class="w-full h-auto flex items-center bg-[#22222a] rounded-md py-2 md:py-0">
+                <img :src="prod.imagen" class="w-[20%] hidden md:flex">
+                <div class="md:w-[35%] w-[48%] flex flex-col justify-center h-full pl-4 gap-2">
+                    <span class="md:text-sm text-xs">{{ prod.nombre }}</span>
+                    <span class="md:text-sm text-xs text-teal-400">{{ prod.precio }} €</span>
+                </div>
+                
+                <div class="md:w-[25%] w-[35%]">
+                    <select class="bg-transparent text-white text-sm">
+                        <option value=null class="bg-[#22222a]" disabled selected>Cocción</option>
+                        <option value="poco-h" class="bg-[#22222a]">Poco hecha</option>
+                        <option value="punto-h" class="bg-[#22222a]">Al punto</option>
+                        <option value="muy-h" class="bg-[#22222a]">Muy hecha</option>
+                    </select>
+                </div>
+                
+                <div class="md:w-[20%] w-[17%] h-full flex items-center justify-center">
+                    <button @click="quitar_prod_cart(prod.id)" class="text-red-500 border border-red-500 rounded-lg py-1 px-2 md:py-4 md:px-6 hover:border-2"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
             </div>
         </div>
 
