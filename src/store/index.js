@@ -10,6 +10,7 @@ export default createStore({
     // productos: productos,
     productos: [],
     carrito: [],
+    pago_total: 0,
     categorias: categorias,
     // usuarios: usuarios,
     metodos_pago: metodos_pago,
@@ -28,6 +29,9 @@ export default createStore({
     },
     EMPTY_CART(state) {
       state.carrito = []
+    },
+    SET_PAGO_TOTAL(state, pago_total) {
+      state.pago_total = pago_total
     },
     LOGIN_USER(state, usuario){
       console.log(usuario)

@@ -14,7 +14,7 @@
             <img :src="prod.imagen" class="w-[20%] hidden md:flex">
             <div class="md:w-[35%] w-[48%] flex flex-col justify-center h-full pl-4 gap-2">
                 <span class="md:text-sm text-xs">{{ prod.nombre }}</span>
-                <span class="md:text-sm text-xs text-teal-400">{{ prod.precio }}</span>
+                <span class="md:text-sm text-xs text-teal-400">{{ prod.precio }} €</span>
             </div>
             
             <div class="md:w-[25%] w-[35%]">
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { useToast } from "vue-toastification";
 import { mapState, mapMutations } from 'vuex';
 export default {
     name: 'CartVue',
@@ -66,7 +67,7 @@ export default {
         },
     },
     methods:{
-        ...mapMutations(['REMOVE_FROM_CART', 'EMPTY_CART']),
+        ...mapMutations(['REMOVE_FROM_CART', 'EMPTY_CART', 'SET_PAGO_TOTAL']),
         quitar_prod_cart(prod_id){
             this.REMOVE_FROM_CART(prod_id)
         },        
@@ -77,9 +78,18 @@ export default {
             this.cart_visible = !this.cart_visible
         },
         pagar(){
-            this.$router.push( {name: 'pago', params:{id: 1}} )
+            if (this.num_prods_cart > 0) {
+                this.SET_PAGO_TOTAL(this.calcular_precio_total)
+                this.$router.push( {name: 'pago', params:{id: 1}} )
+            } else {
+                this.toast.warning('No tienes productos en tu carrito')
+            }
         },
-    }
+    },
+    setup() {
+      const toast = useToast();      
+      return { toast }
+    },
 }
 </script>
 
