@@ -23,7 +23,7 @@
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
 import { useToast } from "vue-toastification";
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import axios from 'axios';
 
 export default {
@@ -42,6 +42,7 @@ export default {
       return { toast }
   },
   methods: {
+    ...mapMutations(['LOGIN_USER']),
     async login() {
       try {
         const res = await axios.post('/api/users/login',
@@ -55,7 +56,9 @@ export default {
         console.log(datos.mensaje)
 
         if(datos && datos.estado == 'success'){
-          this.$router.push( {name: 'inicio'} )
+          console.log(datos.user)
+          this.LOGIN_USER(datos.user)
+          this.$router.push( {name: 'inicio', params:{id: datos.user.id}} )
         } else {
           this.toast.error(datos.mensaje, {
             timeout: 2000,

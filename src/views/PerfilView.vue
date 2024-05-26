@@ -8,7 +8,7 @@
       
       <div id="perfil" class="w-full h-[20vh] flex items-center p-2 bg-[#22222a]">
         <img :src="pfp_actual" class="w-[30vw] h-[30vw] md:w-[7vw] md:h-[7vw] md:ml-6 rounded-full">
-        <p class="ml-4">manolo_07@gmail.com</p>
+        <p class="ml-4">{{ user_logueado.email }}</p>
       </div>
       <div class="mt-4 p-2 md:flex md:flex-col">
         <label>Expositor de recompensas</label>
@@ -29,8 +29,7 @@
         <label>Nueva contraseña</label>
         <input type="password" placeholder="Contraseña" v-model="password" class="p-2 rounded-md w-full md:w-[30vw] bg-[#111015] border border-[#14c458] my-2">
         <div>
-          <!-- <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-red-700 to-red-500 my-8">Descartar</button> -->
-          <button @click="vaciarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
+          <button @click="cancelar_settings" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
           <button @click="guardarCampos" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600bl bg-gradient-to-br from-[#14c458] to-teal-400 ml-4">Guardar</button>
         </div>
         
@@ -42,6 +41,9 @@
 
 <script>
 import NavVue from '@/components/NavVue.vue';
+import { mapState } from 'vuex';
+import axios from 'axios';
+import { useToast } from "vue-toastification";
 // atropos
 import MedalAtroposVueVue from '@/components/MedalAtroposVue.vue'
 
@@ -55,27 +57,52 @@ export default {
       medal_src_2: require('@/assets/medal_2.png'),
       medal_src_3: require('@/assets/medal_3.png'),
       medal_src_4: require('@/assets/medal_4.png'),
-      pfp_actual: require('@/assets/pfp_1_burger.jpg'),
-      pfp_1_burger: require('@/assets/pfp_1_burger.jpg'),
-      pfp_2_spicy: require('@/assets/pfp_2_spicy.jpg'),
-      pfp_3_chef: require('@/assets/pfp_3_chef.jpg'),
-      pfp_4_fries: require('@/assets/pfp_4_fries.jpg'),
-      pfp_5_icecream: require('@/assets/pfp_5_icecream.jpg'),
+      pfp_actual: '',
+      pfp_1_burger: '/profile_img/pfp_1_burger.jpg',
+      pfp_2_spicy: '/profile_img/pfp_2_spicy.jpg',
+      pfp_3_chef: '/profile_img/pfp_3_chef.jpg',
+      pfp_4_fries: '/profile_img/pfp_4_fries.jpg',
+      pfp_5_icecream: '/profile_img/pfp_5_icecream.jpg',
     }
   },
+  computed:{
+    ...mapState(['user_logueado'])
+  },
+  created() {
+    this.pfp_actual = this.user_logueado.foto_perfil // para que no carge la imagen antes de que exista
+  },
   methods:{
-    guardarCampos(){
-      console.log(this.pfp_actual, this.password) // foto = /img/pfp_1_burger.03efad8e.jpg //string
-      this.vaciarCampos()
+    async guardarCampos() {
+      try {
+        const res = await axios.put('/api/users/perfil/settings',
+          {
+            id: this.user_logueado.id,
+            pfp_actual: this.pfp_actual,
+            password: this.password,
+          }
+        )
+
+        const datos = res.data
+        this.toast.success(datos.mensaje)
+        this.user_logueado.foto_perfil = this.pfp_actual
+        this.vaciarCampos()
+      } catch (error) {
+        this.toast.error('Ha habido un error:', error)
+      }
     },
-    vaciarCampos(){
+    cancelar_settings(){
       this.password = null
+      this.pfp_actual = this.user_logueado.foto_perfil
       this.$router.push( {name: 'inicio'} )
     },
     elegir_pfp(new_pfp){
       this.pfp_actual = new_pfp
     }
-  }
+  },
+  setup() {
+      const toast = useToast();      
+      return { toast }
+  },
 }
 </script>
 

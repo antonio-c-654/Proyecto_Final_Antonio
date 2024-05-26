@@ -49,10 +49,10 @@ export default createStore({
       state.pago_total = pago_total
     },
     LOGIN_USER(state, usuario){
-      console.log(usuario)
+      // console.log(usuario)
       if(usuario){
         state.user_logueado = usuario
-        console.log(state.user_logueado)
+        // console.log(state.user_logueado)
       }
       else{
         console.log('no se ha podido hacer login')
@@ -60,7 +60,7 @@ export default createStore({
     },
     LOGOUT(state){
       state.user_logueado = -1
-      console.log(state.user_logueado)
+      // console.log(state.user_logueado)
     },
   },
 
