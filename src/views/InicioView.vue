@@ -19,16 +19,16 @@
             <div class="w-full flex justify-between">
                 <!-- <i class="fa-solid fa-circle-info text-white cursor-pointer"></i> -->
                 <div class="flex gap-2">
-                  <i v-if="producto.composicion.alergenos.includes('gluten')" class="fa-solid fa-wheat-awn text-yellow-600"></i>
-                  <i v-if="producto.composicion.alergenos.includes('crustaceos')" class="fa-solid fa-shrimp text-red-400"></i>
-                  <i v-if="producto.composicion.alergenos.includes('huevos')" class="fa-solid fa-egg text-fuchsia-100"></i>
-                  <i v-if="producto.composicion.alergenos.includes('pescado')" class="fa-solid fa-fish text-blue-400"></i>
-                  <i v-if="producto.composicion.alergenos.includes('soja')" class="fa-brands fa-envira text-lime-200"></i>
-                  <i v-if="producto.composicion.alergenos.includes('lacteos')" class="fa-solid fa-cheese text-yellow-400"></i>
+                  <i v-if="producto.alergenos.includes('gluten')" class="fa-solid fa-wheat-awn text-yellow-600"></i>
+                  <i v-if="producto.alergenos.includes('crustaceos')" class="fa-solid fa-shrimp text-red-400"></i>
+                  <i v-if="producto.alergenos.includes('huevos')" class="fa-solid fa-egg text-fuchsia-100"></i>
+                  <i v-if="producto.alergenos.includes('pescado')" class="fa-solid fa-fish text-blue-400"></i>
+                  <i v-if="producto.alergenos.includes('soja')" class="fa-brands fa-envira text-lime-200"></i>
+                  <i v-if="producto.alergenos.includes('lacteos')" class="fa-solid fa-cheese text-yellow-400"></i>
                 </div>
-                <!-- <i v-if="producto.caracteristicas.destacado" class="fa-solid fa-fire text-red-500"></i> -->
-                <i v-if="producto.caracteristicas.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
-                <i v-if="producto.caracteristicas.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
+                <!-- <i v-if="producto.destacado" class="fa-solid fa-fire text-red-500 cursor-pointer"></i> -->
+                <i v-if="producto.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
+                <i v-if="producto.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
             </div>
             <div class="flex justify-center w-full md:min-h-[70%] min-h-[50%] rounded-md overflow-hidden my-2">
               <img :src="producto.imagen" class="w-full h-full">
@@ -36,13 +36,13 @@
             <!-- <img src="../assets/burger_1.jpg" class="h-[150px] w-[150px]"> -->
             <p class="text-[#7c7c86] text-xs overflow-clip">
               <span class="text-[#dadbdb] font-bold text-base">{{ producto.nombre }}
-                <i v-if="producto.caracteristicas.picante" class="fa-solid fa-pepper-hot text-red-600 ml-2"></i>
-                <i v-if="producto.caracteristicas.vegano" class="fa-brands fa-envira text-green-400 ml-2"></i>
+                <i v-if="producto.picante" class="fa-solid fa-pepper-hot text-red-600 ml-2"></i>
+                <i v-if="producto.vegano" class="fa-brands fa-envira text-green-400 ml-2"></i>
               </span> <br> {{ producto.descripcion }}
             </p>
             <div class="w-full flex justify-between items-center">
                 <span class="text-teal-400 lg:text-2xl md:text-xl text-lg">{{ producto.precio }} €</span>
-                <button class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Añadir</button>
+                <button @click="add_to_cart(producto)" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Añadir</button>
                 <!-- <button class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-blue-500 to-teal-400">Añadir</button> -->
             </div>
         </div>
@@ -60,17 +60,38 @@
 <script>
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
-import { mapState } from 'vuex';
+import { useToast } from "vue-toastification";
+import { mapState, mapMutations } from 'vuex';
 export default {
   components: { NavVue, FooterVue },
   computed:{
     ...mapState(['productos', 'categorias'])
   },
   methods:{
+    ...mapMutations(['ADD_TO_CART']),
+    add_to_cart(producto){
+      this.toast.success('Añadido!', { timeout: 1000 })
+      this.ADD_TO_CART(producto)
+    },
     hacer_fav(){
-      alert("Se ha guardado el prod")
+      this.toast.info('Funcionalidad no implementada todavia')
+    },
+    popup_cookies(){
+      this.toast.info('Este sitio web utiliza cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra política de cookies.', {
+        position: "bottom-left",
+        timeout: false,
+        transition: "Vue-Toastification__fade",
+      });
     }
-  }
+  },
+  setup() {
+      const toast = useToast();      
+      return { toast }
+  },
+  mounted() {
+    this.$store.dispatch('GET_ALL_PRODUCTS'); // cargar productos
+    this.popup_cookies();
+  },
 
 }
 </script>

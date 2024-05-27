@@ -16,7 +16,7 @@ export const categorias = [
     },
     {
         id_cat: 4, 
-        nombre: "Alergenos", 
+        nombre: "Alérgenos", 
         icono: '<i class="fa-solid fa-wheat-awn text-yellow-600"></i>', 
     },
     {

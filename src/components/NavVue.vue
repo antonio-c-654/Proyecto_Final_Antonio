@@ -10,10 +10,10 @@
             <router-link to="/" class="">Inicio</router-link>
             <router-link to="/" class="">Hamburguesa del mes</router-link>
             <router-link to="/contacto" class="">Contacto</router-link>
-            <router-link to="/perfil/1" class="">Perfil</router-link>
-            <router-link to="/register" class="">Registrarse</router-link>
-            <router-link to="/login" class="">Iniciar sesión</router-link>
-            <p @click="logout()">Cerrar sesión</p>
+            <router-link v-if="user_logueado == -1" to="/register" class="">Registrarse</router-link>
+            <router-link v-if="user_logueado == -1" to="/login" class="">Iniciar sesión</router-link>
+            <router-link v-if="user_logueado != -1" :to="`/perfil/${user_logueado.id}`" class="">Perfil</router-link>
+            <p v-if="user_logueado != -1" @click="logout()">Cerrar sesión</p>
         </div>
 
         <div id="nav_izq" class="w-[60vw] h-full md:flex hidden items-center justify-around">
@@ -23,27 +23,26 @@
             <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Inicio</router-link>
             <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Hamburguesa del mes</router-link>
             <router-link to="/contacto" class="hover:text-black hover:underline hover:underline-offset-4">Contacto</router-link>
-            <router-link to="/perfil/1" class="hover:text-black hover:underline hover:underline-offset-4">Perfil</router-link>
         </div>
 
         <div id="nav_der" class="w-[30vw] border-l-black h-full flex items-center justify-evenly">
 
             <CartVue></CartVue>
 
-            <div id="register_sesion" v-if="!burger_menu_open" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+            <div id="register_sesion" v-if="!burger_menu_open && user_logueado == -1" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <router-link to="/register" class="">Registrarse</router-link>
                 <i class="fa-solid fa-user-plus ml-3"></i>
             </div>
-            <div id="login_sesion" v-if="!burger_menu_open" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+            <div id="login_sesion" v-if="!burger_menu_open && user_logueado == -1" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <router-link to="/login" class="">Iniciar sesión</router-link>
                 <i class="fa-solid fa-user ml-3"></i>
             </div>
-            <div id="ir_a_perfil" v-if="!burger_menu_open" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+            <div @click="ir_a_perfil()" v-if="!burger_menu_open && user_logueado != -1" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
                 <span>Perfil</span>
-                <i class="fa-solid fa-user-plus ml-3"></i>
+                <i class="fa-solid fa-user-gear ml-3"></i>
             </div>
-            <div id="login_sesion_close" v-if="!burger_menu_open" class="hidden items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
-                <span @click="logout()">Cerrar sesión</span>
+            <div @click="logout()" v-if="!burger_menu_open && user_logueado != -1" class="hidden md:flex items-center hover:bg-green-400 p-2 rounded-md cursor-pointer text-sm">
+                <span>Cerrar sesión</span>
                 <i class="fa-solid fa-right-to-bracket ml-3"></i>
             </div>
         </div>
@@ -75,7 +74,9 @@ export default {
         toogleMenuHam(){
             this.burger_menu_open = !this.burger_menu_open
         },
-        
+        ir_a_perfil(){
+            this.$router.push( {name: 'perfil', params:{id: this.user_logueado.id}} )
+        }
     }
 }
 </script>
