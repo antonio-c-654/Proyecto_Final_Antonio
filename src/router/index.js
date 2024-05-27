@@ -37,6 +37,11 @@ const routes = [
     component: () => import('../views/ContactoView.vue')
   },
   {
+    path: '/forgotpass',
+    name: 'forgotpass',
+    component: () => import('../views/ForgotPassView.vue')
+  },
+  {
     path: '/pagenotfound',
     name: 'pagenotfound',
     component: () => import('../views/PageNotFoundView.vue'),

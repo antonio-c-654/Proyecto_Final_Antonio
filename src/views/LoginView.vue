@@ -9,7 +9,7 @@
         <input type="email" placeholder="Email" v-model="email" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <input type="password" placeholder="Contraseña" v-model="password" required class="p-2 rounded-md w-full bg-[#111015] border border-[#14c458]">
         <router-link to="/register" class="text-blue-500 underline w-full">¿No tienes cuenta? Regístrate</router-link>
-        <router-link to="/register" class="text-blue-500 underline w-full">¿Has olvidado tu contraseña?</router-link>
+        <router-link to="/forgotpass" class="text-blue-500 underline w-full">¿Has olvidado tu contraseña?</router-link>
         <button type="submit" class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Enviar</button>
       </form>
     </div>
@@ -53,7 +53,7 @@ export default {
         )
 
         const datos = res.data
-        console.log(datos.mensaje)
+        // console.log(datos.mensaje)
 
         if(datos && datos.estado == 'success'){
           console.log(datos.user)
