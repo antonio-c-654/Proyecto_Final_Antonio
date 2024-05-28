@@ -82,7 +82,16 @@ export default {
         timeout: false,
         transition: "Vue-Toastification__fade",
       });
-    }
+    },
+    check_popup_cookie(){
+      // para que el popup no se ejecute cada vez que navegas a InicioView
+      // si no encuentra la cookie la pone y ejecuta el popup y si la encuntra no lo muestra 
+      const popup_mostrado = localStorage.getItem('popup_mostrado_arleburger')
+      if (!popup_mostrado) {
+        this.popup_cookies()
+        localStorage.setItem('popup_mostrado_arleburger', 'true')
+      }
+    },
   },
   setup() {
       const toast = useToast();      
@@ -90,7 +99,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('GET_ALL_PRODUCTS'); // cargar productos
-    this.popup_cookies();
+    this.check_popup_cookie();
   },
 
 }
