@@ -1,19 +1,15 @@
 import { createStore } from 'vuex'
-// import { productos } from './productos'
 import { categorias } from './categorias'
-// import { usuarios } from './usuarios'
 import { metodos_pago } from './metodos_pago'
 import axios from 'axios'
 
 export default createStore({
   state: {
-    // productos: productos,
     productos: [],
     carrito: [],
     contador_id_cart_prod: 1,
     pago_total: 0,
     categorias: categorias,
-    // usuarios: usuarios,
     metodos_pago: metodos_pago,
     user_logueado: -1
   },
@@ -49,10 +45,8 @@ export default createStore({
       state.pago_total = pago_total
     },
     LOGIN_USER(state, usuario){
-      // console.log(usuario)
       if(usuario){
         state.user_logueado = usuario
-        // console.log(state.user_logueado)
       }
       else{
         console.log('no se ha podido hacer login')
@@ -60,7 +54,6 @@ export default createStore({
     },
     LOGOUT(state){
       state.user_logueado = -1
-      // console.log(state.user_logueado)
     },
   },
 

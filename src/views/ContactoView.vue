@@ -32,7 +32,6 @@
         </div>
         <button type="submit" class="bg-[#14c458] text-[#dadbdb] w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 shadow-md bg-gradient-to-br from-[#14c458] to-teal-400">Enviar</button>
 
-        <!-- <span>{{ nombre }} - {{ email }} - {{ telefono }} - {{ categoria }} - {{ mensaje }} - {{ politica }}</span> -->
       </form>
       
     </div>

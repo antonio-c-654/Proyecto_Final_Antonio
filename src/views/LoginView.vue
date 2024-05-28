@@ -53,7 +53,6 @@ export default {
         )
 
         const datos = res.data
-        // console.log(datos.mensaje)
 
         if(datos && datos.estado == 'success'){
           console.log(datos.user)
@@ -65,7 +64,6 @@ export default {
           });
         }
       } catch (error) {
-        // console.log('ha habido un error:', error)
         this.toast.error('Ha habido un error:', error);
       }
     },
