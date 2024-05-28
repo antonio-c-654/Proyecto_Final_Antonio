@@ -15,11 +15,6 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
 ### Tailwind
 ```
 npm run w-tailw
@@ -29,6 +24,3 @@ npm run w-tailw
 ```
 nvm use 20
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
