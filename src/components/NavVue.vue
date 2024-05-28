@@ -8,7 +8,7 @@
                 <i @click="toogleMenuHam()" class="fa-solid fa-xmark cursor-pointer text-3xl text-red-500"></i>
             </div>
             <router-link to="/" class="">Inicio</router-link>
-            <router-link to="/" class="">Hamburguesa del mes</router-link>
+            <router-link to="/politica" class="">Política de privacidad</router-link>
             <router-link to="/contacto" class="">Contacto</router-link>
             <router-link v-if="user_logueado == -1" to="/register" class="">Registrarse</router-link>
             <router-link v-if="user_logueado == -1" to="/login" class="">Iniciar sesión</router-link>
@@ -21,7 +21,7 @@
                 <img src="../assets/logo_v_3.png" class="h-[80%]">
             </div>
             <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Inicio</router-link>
-            <router-link to="/" class="hover:text-black hover:underline hover:underline-offset-4">Hamburguesa del mes</router-link>
+            <router-link to="/politica" class="hover:text-black hover:underline hover:underline-offset-4">Política de privacidad</router-link>
             <router-link to="/contacto" class="hover:text-black hover:underline hover:underline-offset-4">Contacto</router-link>
         </div>
 

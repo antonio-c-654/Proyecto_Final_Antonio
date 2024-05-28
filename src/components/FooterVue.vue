@@ -2,7 +2,7 @@
 
     <footer class="bg-[#22222a] text-white md:h-[5vh] h-auto flex md:flex-row flex-col md:items-center p-4 md:p-0 gap-2 md:gap-0 md:justify-evenly">
         <div>
-            <router-link to="/politica" class="hover:underline">Politica de privacidad</router-link>
+            <router-link to="/politica" class="hover:underline">Política de privacidad</router-link>
         </div>
         <div>
             <p class="text-[#14c458]">Copyright © 2024 Arleburger</p>

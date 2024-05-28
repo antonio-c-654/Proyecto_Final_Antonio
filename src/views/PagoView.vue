@@ -27,14 +27,12 @@
             <p>Fecha de caducidad</p>
             <input type="month" v-model="fecha_cad_tarjeta" :min="fecha_actual" class="p-1 my-2 rounded-md w-[90%] md:w-[90%] bg-[#111015] border border-[#14c458]">
             <p>Código CCV de tarjeta</p>
-            <label class="text-sm italic mt-1 mb-2 text-gray-500"><i class="fa-solid fa-circle-info"></i> Consta de 3 dígitos sin espacios</label>
-            <input type="tel" v-model="cod_ccv" pattern="[0-9]*" min="0" max="999" minlength="3" maxlength="3" class="p-1 rounded-md w-[50%] md:w-[50%] bg-[#111015] border border-[#14c458] mb-2">
+            <label class="text-sm italic mt-1 mb-2 text-gray-500"><i class="fa-solid fa-circle-info"></i> Consta de 3 dígitos</label>
+            <input type="tel" v-model="cod_ccv" pattern="[0-9]*" min="0" max="999" minlength="3" maxlength="3" placeholder="xxx" class="p-1 rounded-md w-[90%] md:w-[50%] bg-[#111015] border border-[#14c458] mb-2">
           </div>
         </div>
       </div>
 
-      <!-- <p>{{ num_tarjeta }} - {{ fecha_cad_tarjeta }} - {{ cod_ccv }} - {{ fecha_actual }}</p>
-      <p>{{ metodo_pago.nombre }}</p> -->
     </div>
 
     <div id="parte_der_resumen" class="md:w-[50%] h-full p-4">
@@ -48,7 +46,7 @@
             <th class="w-[20%] text-end">Precio</th>
           </tr>
         </thead>
-        <tbody class="mt-2 mb-4 flex flex-col gap-2">
+        <tbody class="mt-2 mb-4 flex flex-col gap-2 max-h-[58vh] overflow-scroll no-scrollbar">
           <tr v-for="prod in carrito" :key="prod.id" class="w-full flex items-center justify-between bg-[#22222a] rounded-md p-2 md:p-4">
             <td class="w-[35%]">{{ prod.nombre }}</td>
             <td class="w-[20%]">{{ prod.coccion }}</td>
@@ -62,8 +60,11 @@
           </tr>
         </tfoot>
       </table>
-      <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-8">Cancelar</button>
-      <button type="submit" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-8 ml-6">Pagar</button>
+      <div>
+        <input v-if="metodo_pago.nombre=='Tarjeta'" type="email" placeholder="Email" v-model="email" required class="p-2 md:mt-2 mt-6 rounded-md w-full md:w-[50%] bg-[#111015] border border-[#14c458]">
+      </div>
+      <button @click="volverInicio" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-slate-500 my-6">Cancelar</button>
+      <button type="submit" class="text-white w-[120px] h-[35px] rounded-md cursor-pointer hover:border hover:border-white-600 bg-gradient-to-br from-[#14c458] to-teal-400 my-6 ml-6">Pagar</button>
     </div>
 
   </form>
@@ -73,7 +74,7 @@
 <script>
 import { mapState } from 'vuex';
 import { useToast } from "vue-toastification";
-
+import axios from 'axios';
 // atropos
 import CardAtroposVue from '@/components/CardAtroposVue.vue';
 
@@ -85,7 +86,8 @@ export default {
       num_tarjeta: null,
       fecha_cad_tarjeta: null,
       cod_ccv: null,
-      fecha_actual: this.obtenerFechaActual()
+      fecha_actual: this.obtenerFechaActual(),
+      email: null
     }
   },
   computed:{
@@ -96,18 +98,38 @@ export default {
       return { toast }
   },
   methods:{
-    pagar_final() {
+    async pagar_final() {
       if (this.metodo_pago.nombre == 'default') {
         this.toast.warning("Selecciona método de pago")
-      } else if (this.metodo_pago.nombre == 'Tarjeta'){
+      } 
+      else if (this.metodo_pago.nombre == 'Tarjeta'){
         if (this.num_tarjeta!=null && this.fecha_cad_tarjeta!=null && this.cod_ccv!=null) {
-          this.toast.success("Pago realizado!")
+          // Peticion para enviar la factura
+          try {
+            const res = await axios.post('/api/products/cart/sendBill',
+                    {
+                        destinatario: this.email,
+                        pago_total: this.pago_total
+                    }
+                )
+
+                const datos = res.data
+
+                if(datos.estado == 'success'){
+                    this.toast.success(datos.mensaje, { timeout: 2000, });
+                } else {
+                    this.toast.warning(datos.mensaje, { timeout: 2000, });
+                }
+            } catch (error) {
+                this.toast.error('Ha habido un error:', error);
+            }
+
         } else {
           this.toast.warning("Rellena todos los campos correctamente")
         }
-      } else {
-        // console.log(this.metodo_pago.enlace_web)
-        window.location.href = this.metodo_pago.enlace_web // redirigir
+      } 
+      else {
+        window.location.href = this.metodo_pago.enlace_web // redirigir cuando no se paga con tarjeta
       }
     },
     cambiarMetodoPago(metodo){

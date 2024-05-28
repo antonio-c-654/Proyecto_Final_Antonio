@@ -8,7 +8,7 @@
     >
       <img
         class="w-[70vw] md:w-[20vw] mb-2"
-        src="https://static.vecteezy.com/system/resources/thumbnails/009/384/393/small_2x/credit-card-clipart-design-illustration-free-png.png"
+        :src="credit_card_img"
       />
     </atropos-component>
 
@@ -17,8 +17,15 @@
 </template>
 
 <script>
+import credit_card_img from '@/assets/credit_card_img.webp';
+
 export default {
   name: 'CardAtroposVue',
+  data() {
+    return {
+      credit_card_img
+    };
+  }
 }
 </script>
 

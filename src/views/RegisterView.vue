@@ -61,7 +61,6 @@ export default {
           });
         }
       } catch (error) {
-        // console.log('ha habido un error:', error)
         this.toast.error('Ha habido un error:', error);
       }
     },
