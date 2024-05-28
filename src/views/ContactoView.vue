@@ -4,7 +4,7 @@
     <NavVue></NavVue>
 
     <div class="bg-[#111015] text-white flex flex-col items-center pt-6 md:h-[85vh] h-auto">
-      <form class="md:w-[40vw] h-full w-[90vw] flex flex-col md:items-center md:gap-6 gap-4 mb-4">
+      <form @submit.prevent="no_implementado" class="md:w-[40vw] h-full w-[90vw] flex flex-col md:items-center md:gap-6 gap-4 mb-4">
         <h2 class="md:text-2xl text-lg">¿En qué te podemos ayudar?</h2>
         <p class="md:text-base text-sm">Apreciamos tu feedback para mejorar</p>
 
@@ -14,7 +14,7 @@
         </div>
         
         <div class="w-full flex justify-between">
-          <input type="number" min="0" placeholder="Telefono" v-model="telefono" required minlength="9" maxlength="9" class="p-2 rounded-md w-[45%] bg-[#111015] border border-[#14c458]">
+          <input type="tel" placeholder="Telefono" v-model="telefono" required pattern="[0-9]*" minlength="9" maxlength="9" min="0" class="p-2 rounded-md w-[45%] bg-[#111015] border border-[#14c458]">
           
           <select v-model="categoria" class="bg-[#111015] text-[#9ca3af] p-2 rounded-md w-[45%] border border-[#14c458]">
             <option value=null disabled selected>Categoria</option>
@@ -44,6 +44,7 @@
 <script>
 import NavVue from '@/components/NavVue.vue';
 import FooterVue from '@/components/FooterVue.vue';
+import { useToast } from "vue-toastification";
 export default {
   components: { NavVue, FooterVue },
   data(){
@@ -55,7 +56,16 @@ export default {
       mensaje: null,
       politica: null,
     }
-  }
+  },
+  methods:{
+    no_implementado(){
+      this.toast.info('Funcionalidad no implementada todavia', { timeout: 1400 })
+    },
+  },
+  setup() {
+      const toast = useToast();      
+      return { toast }
+  },
 }
 </script>
 

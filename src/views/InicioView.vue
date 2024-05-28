@@ -7,7 +7,7 @@
 
       <div id="menu_lateral" class="w-[12vw] h-[70vh] hidden lg:flex flex-col pl-4 text-white">
         <h1 class="text-xl font-bold underline underline-offset-4 mt-8 mb-8 ml-2">Productos</h1>
-        <div v-for="cat in categorias" :key="cat.id_cat" class="hover:bg-white hover:bg-opacity-90 hover:text-black rounded-md h-[40px] w-[95%] pl-2 flex items-center mb-4 cursor-pointer">
+        <div v-for="cat in categorias" :key="cat.id_cat" @click="no_implementado" class="hover:bg-white hover:bg-opacity-90 hover:text-black rounded-md h-[40px] w-[95%] pl-2 flex items-center mb-4 cursor-pointer">
             <span v-html="cat.icono" class="mr-2"></span>
             <span class="text-sm">{{ cat.nombre }}</span>
         </div>
@@ -25,8 +25,8 @@
                   <i v-if="producto.alergenos.includes('soja')" class="fa-brands fa-envira text-lime-200"></i>
                   <i v-if="producto.alergenos.includes('lacteos')" class="fa-solid fa-cheese text-yellow-400"></i>
                 </div>
-                <i v-if="producto.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
-                <i v-if="producto.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer" @click="hacer_fav"></i>
+                <i v-if="producto.favorito" class="fa-solid fa-heart text-red-500 cursor-pointer" @click="no_implementado"></i>
+                <i v-if="producto.favorito === false" class="fa-regular fa-heart text-red-500 cursor-pointer hover:bg-red-500" @click="no_implementado"></i>
             </div>
             <div class="flex justify-center w-full md:min-h-[70%] min-h-[50%] rounded-md overflow-hidden my-2">
               <img :src="producto.imagen" class="w-full h-full">
@@ -69,8 +69,8 @@ export default {
       this.toast.success('Añadido!', { timeout: 1000 })
       this.ADD_TO_CART(producto)
     },
-    hacer_fav(){
-      this.toast.info('Funcionalidad no implementada todavia')
+    no_implementado(){
+      this.toast.info('Funcionalidad no implementada todavia', { timeout: 1400 })
     },
     popup_cookies(){
       this.toast.info('Este sitio web utiliza cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra política de cookies.', {
